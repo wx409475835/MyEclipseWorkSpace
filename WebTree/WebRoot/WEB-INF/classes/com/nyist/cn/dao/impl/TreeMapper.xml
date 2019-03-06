@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nyist.cn.dao.TreeMapper">
+	
+	<select id="getAll" resultType="com.nyist.cn.model.Tree">
+		select child.id,child.name name,child.lft lft,child.rgt rgt,count(child.name) from category parent,category child where
+		<![CDATA[
+			child.lft >= parent.lft and child.rgt <= parent.rgt group by child.name order by child.lft
+		]]>
+	</select>
+</mapper>

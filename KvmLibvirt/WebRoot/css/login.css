@@ -1,0 +1,62 @@
+body {
+	background-size: 100% 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.login-div td {
+	position: relative;
+	float: left;
+	width: 170px;
+	height: 45px;
+	font-family: 微软雅黑;
+	margin-left: 45px;
+	margin-top: 30px;
+}
+
+.login-div-inp {
+	/* position:relative;
+			float:left; */
+	width: 200px;
+	height: 35px;
+	border-radius: -webkit-calc(10px);
+	
+}
+
+img {
+	position: absolute;
+	float: right;
+	/* border: 1px solid red; */
+	margin-left: 3px;
+	margin-top: 14px;
+}
+
+.submit-tr {
+	height: 55px;
+}
+
+.Login {
+	position: relative;
+	float: left;
+	width: 56px;
+	height: 33px;
+	border-radius: -webkit-calc(6px);
+	margin-left: 15px;
+	margin-right: 25px;
+	/* background-color: #197edf ; */
+	font-family: 微软雅黑;
+}
+
+table input{
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+
+#login:HOVER {
+	background-color: #f5f5f5;
+}
+
+span{
+	font-family: "微软雅黑";
+	font-size: 18px;
+}

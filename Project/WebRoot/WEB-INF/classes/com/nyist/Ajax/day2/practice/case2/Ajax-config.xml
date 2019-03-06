@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http:/mybatis.orgdtd/mybati 3 config.dtd">
+<configuration>
+	<environments default="Ajax">
+		<environment id="Ajax">
+			<!-- 配置JDBC的事务管理 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 数据源类型为POOLED 为mybatis的内置连接池 -->
+			<dataSource type="POOLED">
+				<!-- 设置JDBC驱动 -->
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<!-- 指定需要链接的数据库 -->
+				<property name="url" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8"/>
+				<!-- 数据库的名称 -->
+				<property name="username" value="root"/>
+				<!-- 数据库的密码 -->
+				<property name="password" value="410923"/>
+			</dataSource>
+		</environment>	
+	</environments>
+	<mappers>
+		<mapper resource="com/nyist/Ajax/day2/practice/case2/Dao/Impl/AjaxMapper.xml"></mapper>
+	</mappers>
+
+</configuration>
+

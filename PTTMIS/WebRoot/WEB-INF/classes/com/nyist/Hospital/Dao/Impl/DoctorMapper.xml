@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nyist.Hospital.Dao.DoctorMapper">
+	
+	<!-- 医生用户 注册登陆信息 -->
+	<insert id="InsertDoctorLoginInfo" parameterType="com.nyist.Hospital.Model.hospital_login">
+		insert into hospital_login(hl_username,hl_password,hl_doctorid)
+		values(#{hl_username},#{hl_password},#{hl_doctorid})
+	</insert>
+	
+	<!-- 判断医生用户名是否存在 -->
+	<select id="JudgeDoctorName" parameterType="java.lang.String" resultType="java.lang.String">
+		select hd_id from hospital_doctor where hd_name=#{hd_name}
+	</select>
+	
+	<!-- 判断病人姓名是否已经存在 -->
+	<select id="JudgePatientName" parameterType="java.lang.String" resultType="java.lang.String">
+		select hp_id from hospital_patient where hp_name=#{hp_name}
+	</select>
+	
+	<!-- 医生用户登陆 -->
+	<select id="DoctorLogin" resultType="java.lang.String">
+		select hl_doctorid from hospital_login where hl_username=#{hl_username} and hl_password = #{hl_password} 
+	</select>
+	
+	<!--更新医生用户名和密码 -->
+	<update id="UpdateDoctorAccountPassword" parameterType="com.nyist.Hospital.Model.hospital_login">
+		update hospital_login set hl_username = #{hl_username},hl_password = #{hl_password}
+		where hl_doctorid = #{hl_doctorid}
+	</update>
+	
+	<!-- 通过 医生iD  查询医生用户名 -->
+	<select id="SelectHl_usernameByHl_doctorid" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select hl_username from hospital_login where hl_doctorid = #{hl_doctorid}
+	</select>
+	
+	<!-- 通过 病人ID  查询结算信息 -->
+	<select id="SelectTreateMoneyByHtm_patientid" parameterType="java.lang.Integer"  resultType="com.nyist.Hospital.Model.hospital_treatemoney">
+		select * from hospital_treatemoney where htm_patientid = #{htm_patientid}
+	</select>
+	
+	<!-- 查询账户 -->
+	<select id="SelectAccount" parameterType="java.lang.String" resultType="java.lang.String">
+		select ha_id from hospital_administrator where ha_account = #{ha_account}
+	</select>
+	
+	<!-- 查询所有通知 -->
+	<select id="SelectAllInforms" resultType="com.nyist.Hospital.Model.hospital_inform">
+		select * from hospital_doctor_inform 
+	</select>
+	
+	<!-- 添加通知信息 -->
+	<insert id="AddInforms" parameterType="com.nyist.Hospital.Model.hospital_inform">
+		insert into hospital_doctor_inform(hi_personid,hi_tet,hi_content) values(#{hi_personid},#{hi_tet},#{hi_content})
+	</insert>
+	
+	<!-- 清空通知信息 -->
+	<delete id="DeleteAllInforms">
+		delete from hospital_doctor_inform
+	</delete>
+	
+	<!-- 更新通知 -->
+	<update id="UpdateInformById" parameterType="com.nyist.Hospital.Model.hospital_inform">
+		update hospital_doctor_inform set hi_tet = #{hi_tet},hi_content = #{hi_content}
+		where hi_id = #{hi_id} and hi_personid = #{hi_personid}
+	</update>
+	
+	<!-- 查询结算记录 -->
+	<select id="QueryLimitListHospital_doctor_inform" resultType="com.nyist.Hospital.Model.hospital_inform">
+		select * from hospital_doctor_inform limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_inform 表 总记录数 -->
+	<select id="CountHospital_doctor_inform" resultType="java.lang.Integer">
+		select count(*) from hospital_doctor_inform
+	</select>
+</mapper>

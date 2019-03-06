@@ -1,0 +1,110 @@
+﻿@CHARSET "UTF-8";
+/*外面边框的样式*/
+.selectpick_div {
+    background-color: #FFFFFF;
+    font-size: 14px;
+    line-height: 36px;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 9060;
+    color: #232f3e;
+    width: 100px !important;
+    height: 36px !important;
+}
+
+.selectpick_icon {
+    background: url(../images/select-icon.jpg) no-repeat center;
+    height: 36px;
+    width: 17px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.selectpick_div:hover {
+    border: 0;
+}
+
+.selectpick_div:active {
+    border: 0;
+}
+
+/*下拉框的主体*/
+.selectpick_options {
+    border-bottom: none;
+    position: absolute;
+    z-index: 9060;
+    font-size: 12px;
+    text-align: center;
+    display: none;
+    width: 100% !important;
+    -moz-box-shadow: 0 0 2px #e4e4e4;
+    -webkit-box-shadow: 0 0 2px #e4e4e4;
+    box-shadow: 0 0 2px #e4e4e4;
+}
+
+.selectpick_options ul {
+    list-style: none;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    z-index: 9060;
+    font-size: 13px;
+}
+
+.selectpick_options ul li {
+    height: 34px !important;
+    line-height: 34px !important;
+    display: block;
+    z-index: 9060;
+    background-color: #fff;
+}
+
+.selectpick_options li:hover {
+    background: #f5f5f5;
+}
+
+.selectpick_options ul li.selectpick_options_selected {
+    color: #000;
+    z-index: 9060;
+}
+
+/*设置为disabled的时候*/
+.selectpick_no_select {
+    cursor: default;
+    color: #9a9898;
+    background-color: #F5F5F5;
+}
+
+/*设置下拉框的不透明度*/
+.select_hide {
+    display: none;
+    -moz-opacity: 0;
+    opacity: 0;
+    -webkit-opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+/*其他*/
+.selectpick_options {
+    height: auto;
+}
+
+.selectpick_options li {
+    cursor: pointer;
+}
+
+.selectpick_options li label {
+    cursor: pointer;
+}
+
+.selectpick_div_box {
+    display: block;
+    *zoom: 1;
+    *display: inline;
+    position: relative;
+}

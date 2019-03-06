@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>WebListener</display-name>
+	
+	<!-- <listener>
+		<listener-class>com.nyist.cn.Example.SessionScaner</listener-class>
+	</listener> -->
+	
+	<!-- <listener>
+		<listener-class>com.nyist.cn.Example.SendEmailTimer</listener-class>
+	</listener> -->
+	
+	<!-- <listener>
+		<listener-class>com.nyist.cn.Listener.ServletContextAttributeListener</listener-class>
+	</listener> -->
+	
+	<!-- <listener>
+		<listener-class>com.nyist.cn.Listener.HttpSessionAndServletRequestAttributeListener</listener-class>
+	</listener>
+	 -->
+	<listener>
+		<listener-class>com.nyist.cn.Example.KickPerson</listener-class>
+	</listener>
+	
+	<!-- <listener>
+		<listener-class>com.nyist.cn.Listener.SerlvetContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.nyist.cn.Listener.ServletRequestListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.nyist.cn.Listener.HttpSessionListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.nyist.cn.Example.CountTotalNumberOfPeople</listener-class>
+	</listener> -->
+	
+	<!-- 设置session闲置链接 1分钟内无任何操作将被web容器自动销毁 -->
+	<!-- <session-config>
+		<session-timeout>1</session-timeout>
+	</session-config> -->
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.nyist.cn.Servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/Servlet/LoginServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>KickServlet</servlet-name>
+		<servlet-class>com.nyist.cn.Servlet.KickServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KickServlet</servlet-name>
+		<url-pattern>/Servlet/KickServlet</url-pattern>
+	</servlet-mapping>
+</web-app>

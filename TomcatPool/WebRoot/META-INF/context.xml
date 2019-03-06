@@ -1,0 +1,23 @@
+<Context>
+	<Resource 
+	name="jdbc/TomcatPool" 
+	auth="Container" 
+	type="javax.sql.DataSource"
+	username="root" 
+	password="410923" 
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3306/lhg" 
+	maxTotal="8" 
+	maxIdle="4"
+	initialSize="10" />
+</Context>
+
+<!-- 
+	name:是绑定在那个项目上的DataSource,指定web根路径在下
+	auth:说明验证类型为容器
+	driverClassName:驱动类名：指明你用的mysql驱动包
+	type:指定连接池所用类型为DataSource(ODBC数据源)
+	url:需要连接的数据库
+	username:数据库名称
+	password:数据库密码
+-->

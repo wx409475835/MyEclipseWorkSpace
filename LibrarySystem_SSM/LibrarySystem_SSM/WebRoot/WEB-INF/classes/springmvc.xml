@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	
+	<!-- 配置组件扫面 -->
+	<context:component-scan base-package="nyist.net.Library"></context:component-scan>
+	
+	<!-- 配置mvc注解驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 配置SimpleUrl简单的Url映射 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/LoginAction.do">loginAction</prop>
+				<prop key="/RegisterAction.do">registerAction</prop>
+				<prop key="/RegisterPersonAction.do">registerPersonAction</prop>
+				<prop key="/SelectAllBookInformationAction.do">selectAllBookInformationAction</prop>
+				<prop key="/AlterBookInformationAction.do">alterBookInformationAction</prop>
+				<prop key="/AlterBookInformation_ConfirmAction.do">alterBookInformation_ConfirmAction</prop>
+				<prop key="/BrrowBooksAction.do">brrowBooksAction</prop>
+				<prop key="/InsertBooksInformationAction.do">insertBooksInformationAction</prop>
+				<prop key="/SelectMyBrrowInformationAction.do">selectMyBrrowInformationAction</prop>
+				<prop key="/ReturnBooksAction.do">returnBooksAction</prop>
+				<prop key="/SelectBookAsIdInBook_CopyAction.do">selectBookAsIdInBook_CopyAction</prop>
+				<prop key="/SelectMineInformationAction.do">selectMineInformationAction</prop>
+				<prop key="/AlterMineInformationAction.do">alterMineInformationAction</prop>
+				<prop key="/AlterPasswordAction.do">alterPasswordAction</prop>
+				<prop key="/LoginOutAction.do">loginOutAction</prop>
+				<prop key="/SelectAsBookTypeAction.do">selectAsBookTypeAction</prop>
+				<prop key="/DeleteBooksInformationAction.do">deleteBooksInformationAction</prop>
+				<prop key="/SelectAllBrrowInformationsAction.do">selectAllBrrowInformationsAction</prop>
+				<prop key="/SelectAllUserAction.do">selectAllUserAction</prop>
+				<prop key="/SelectUserByIdAction.do">selectUserByIdAction</prop>
+				<prop key="/UpdateUserAction.do">updateUserAction</prop>
+				<prop key="/AlterPerson_UserPasswordAction.do">alterPerson_UserPasswordAction</prop>
+				<prop key="/DeletePerson_UserAction.do">deletePerson_UserAction</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 拦截器，拦截没有登陆访问Action的情况 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/SelectAllBookInformationAction.do"/>
+			<mvc:mapping path="/AlterBookInformationAction.do"/>
+			<mvc:mapping path="/AlterBookInformation_ConfirmAction.do"/>
+			<mvc:mapping path="/BrrowBooksAction.do"/>
+			<mvc:mapping path="/InsertBooksInformationAction.do"/>
+			<mvc:mapping path="/SelectMyBrrowInformationAction.do"/>
+			<mvc:mapping path="/ReturnBooksAction.do"/>
+			<mvc:mapping path="/SelectBookAsIdInBook_CopyAction.do"/>
+			<mvc:mapping path="/SelectMineInformationAction.do"/>
+			<mvc:mapping path="/AlterMineInformationAction.do"/>
+			<mvc:mapping path="/AlterPasswordAction.do"/>
+			<mvc:mapping path="/SelectAsBookTypeAction.do"/>
+			<mvc:mapping path="/DeleteBooksInformationAction.do"/>
+			<mvc:mapping path="/SelectAllBrrowInformationsAction.do"/>
+			<mvc:mapping path="/SelectAllUserAction.do"/>
+			<mvc:mapping path="/SelectUserByIdAction.do"/>
+			<mvc:mapping path="/DeletePerson_UserAction.do"/>
+			<mvc:mapping path="/SelectAllBrrowInformations.do"/>
+			<mvc:mapping path="/AlterBookInformation.do"/>
+			<mvc:mapping path="/Alterpassword.do"/>
+			<mvc:mapping path="/downbook.do"/>
+			<mvc:mapping path="/Main_u.do"/>
+			<mvc:mapping path="/Main.do"/>
+			<mvc:mapping path="/Mine_Alter.do"/>
+			<mvc:mapping path="/Mine.do"/>
+			<mvc:mapping path="/MyBrrowInformation.do"/>
+			<mvc:mapping path="/QY.do"/>
+			<mvc:mapping path="/ReturnBooks.do"/>
+			<mvc:mapping path="/SelectBooks.do"/>
+			<mvc:mapping path="/SelectBooksAsType.do"/>
+			<mvc:mapping path="/updatebooks.do"/>
+			<mvc:mapping path="/SelectAllUser.do"/>
+			<mvc:mapping path="/SelectUserById.do"/>
+			<mvc:mapping path="/updateUser.do"/>
+			<bean class="nyist.net.Library.Interceptor.LibraryInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<!-- 配置视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	
+</beans>

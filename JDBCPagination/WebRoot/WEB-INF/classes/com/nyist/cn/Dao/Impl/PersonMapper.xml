@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nyist.cn.Dao.PersonMapper">
+	<select id="SelectAll" resultType="com.nyist.cn.mode.person">
+		select * from person
+	</select>
+	
+	<insert id="AddInfo" parameterType="com.nyist.cn.mode.person">
+		insert into person(name) value(#{name})
+	</insert>
+	
+	<delete id="DeleteInfo" parameterType="java.lang.String">
+		delete from person where id = #{id}
+	</delete>
+	
+	<!-- 查询总记录数 -->
+	<select id="QueryTotalRecord" resultType="java.lang.Integer">
+		select count(*) from person
+	</select>
+	
+	<!-- 查询选定 页的  数据 -->
+	<select id="QueryLimitList" resultType="com.nyist.cn.mode.person">
+		select * from person limit #{startIndex},#{pagesize}
+	</select>
+	
+	<select id="search" parameterType="java.lang.String" resultType="com.nyist.cn.mode.person">
+		select count(name) id,name from person where name like CONCAT('%',#{key},'%') group by name 
+	</select>
+</mapper>

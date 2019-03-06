@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestpaseJson.html</title>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript">
+		//拿到一个 User 对象
+		/* var jsonstring = "{\"id\":1,\"username\":\"suns\",\"password\":\"123456\"}";	
+		var user = $.parseJSON(jsonstring);
+		console.log(user.id);
+		console.log(user.username);
+		console.log(user.password);
+		alert(user.id);
+		alert(user.username);
+		alert(user.password); */
+		
+		//如果拿到的是一个数组,数组使用的是   []
+		var jsonArray = "[\"suns\",\"lvhg\"]";
+		var user = $.parseJSON(jsonArray);
+		for(var i=0;i<user.length;i++){
+			alert(user[i]);
+		} 
+	</script>
+  </head>
+  
+  <body>
+    
+  </body>
+</html>

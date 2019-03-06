@@ -1,0 +1,18 @@
+<root>
+  <facet id="jpt.jaxb">
+    <node name="libprov">
+      <attribute name="config-id" value="jaxb.generic_2_2"/>
+      <attribute name="copy-tlds" value="false"/>
+      <attribute name="provider-id" value="me-jaxb-library-provider"/>
+      <attribute name="version-id" value="ri_2.2"/>
+    </node>
+    <node name="platform">
+      <attribute name="platform-id" value="generic_2_2"/>
+    </node>
+  </facet>
+  <facet id="jst.jaxrs">
+    <node name="libprov">
+      <attribute name="provider-id" value="jaxrs-no-op-library-provider"/>
+    </node>
+  </facet>
+</root>

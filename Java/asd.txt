@@ -1,0 +1,472 @@
+																				Strring类
+1.Scanner
+	Scanner sc = new Scanner(System.in);				//键盘输入
+	int i = sc.nextInt();								//键盘录入整数存储到i
+	
+	hasNextXxx	判断是否有一个输入项,其中Xxx可以是Int Double等,如果需要判断是否包含下一个字符串,则可以省略Xxx
+	nextXxx		获取    个输入项,Xxx的含义和上个方法中的Xxx相同,Scanner使用空格,回车等作为分隔符
+	
+	nextLine()	获取String类型的值
+	
+	常用函数:
+		返回值类型					函数								解释
+			char					charAt(int index)					返回指定索引处的值
+			int						compareTo(String anotherString) 	按字典顺序比较两个字符串(int取值:>1 -1 0)
+			String					concat(String str)					将指定的字符串连接到该字符串的末尾
+			boolean					contains(CharSequence s)			当且仅当字符串包含指定的char值序列时才返回true
+			boolean					endsWith(String suffix)				测试字符串是否以指定的后缀结尾
+			String					format(String format,Object ... args)使用指定格式字符串和参数返回格式化的字符串
+			byte[]					getBytes()							返回此平台的字符编码
+			int						hashCode()							返回字符串的哈希码
+			int 					indexOf(int ch)						返回此字符串第一次出现索引的位置
+			boolean					isEmpty()							判断字符串对象是否为空
+			int						lastIndexOf(String str)				返回指定字符串最后一次出现的索引
+			int						length()							返回字符串的长度
+			String					replace(char OldChar,char newChar)	在父亲字符串中使用新字符串替换老字符串返回替换后的字符串
+			String[]				split(String regex)				将此字符串分割
+			boolean					startsWith(String prefix)			测试子符串是否以指定前缀开头
+			String					substring(int beginindex)			返回一个字符串,该字符串是此字符串的子字符串
+			String					toLowerCase()						返回变为小写后的字符串
+			String					toUpperCase()						返回转变成字符串大写后的字符
+			String					tirm()								返回一个字符串,并去除任何前导和尾随空格
+			String					valueOf(xxx c)						返回xxx参数的char形式的字符串
+			boolean					equalsIgnoreCase(String anotherString) 忽略字符大小写比较字符串
+		
+========================================================================================================================================================
+																		StringBuffer类
+1.StringBuffer的构造方法
+	StringBuffer();					//创建一个不带字符串缓冲区,其初始容量为16字符
+	StringBuffer(字符串)			//创建一个带有指定字符串的缓冲区
+	
+	常用函数:(StringBuffer和StringBuilder)
+		返回值类型					函数								解释
+			int						capacity() 							返回当前容量
+			StringBuffer			append(xxx x)						将xxx类型变量添加到字符缓冲区中去
+			int 					charAt(int index)					返回char在指定索引在这个序列的值
+			StringBuffer			delete(int startIndex,int endIndex)	删除此序列的字符串的字符
+			StringBuffer			deleteCharAt(int index)				删除char在序列中指定位置的值
+			int						indexOf(String str)					返回指定子串第一次出现的字符串内的索引
+			StringBuffer			insert(int offset,char c)			在制定位置插入字符
+			int   					lastIndexOf(String str)				返回指定子字符串最右边出现的字符串内的索引
+			StringBuffrt			replace(int start,int end,String str)用制定的String中的字符替换此序列的字符串中的string
+			StringBuffer			recerse()							字符串逆转
+			
+	String转换成StringBuffer的方法:
+		①通过构造函数	StringBuffer("字符串");
+		②通过append()方法
+	将StringBuffer转换成String:
+		①通过toString()
+		②substring(0,length);
+		
+	StringBuilder和StringBuffer区别:
+		StringBuffer是jdk1.0版本的,是线程安全的,但是效率低,是同步的
+		StringBuilder是jdk1.5版本的,是线程不安全的,效率高,不同步。
+		
+	String、StringBuffer和StringBuilder的区别:
+		StringBuffer和StringBuilder是可边的序列
+		Stirng是不可变序列
+	
+	排序:
+		①选择排序
+		②冒泡排序
+		🌂二分法(折半查找):查找元素对应的索引
+			前提:数组为有序状态
+			int min=0;
+			int max = arr.leng-1;
+			int mid =(min+max)/2;  b 
+			
+	
+	Arrays类:
+		该类包含用于操作数组的各种方法（如排序和搜索）。该类还包含一个静态工厂，可以将数组视为列表。 
+	
+	Arrays类常用方法:
+		返回值类型					函数								解释
+		List<T>						asList(T...a)						返回指定数组支持的固定大小的列表
+	    int							binarySearch(byte[] a,byte key)		使用二进制搜索指定值得指定位置
+		void						sort(byte[] a)						按照数字序列排序指定得数组
+		String						toString(xxx x)						指定数组内容的字符串形式
+	
+		
+	基本类型和包装类对应:
+	  byte		Byte			
+	  short		Short
+	  int		Integer
+		构造方法:
+			new Integer(int value);
+			new Integer(String s);
+	  long		Long
+	  float		Float
+	  double	Double
+	  char 		Character
+	  boolean	Boolean
+		
+	  	
+	JDK5新特性:自动装箱和自动拆箱
+		自动装箱:将基本类型转换成包装类型
+		自动拆箱:将包装类型转换成基本类型
+		
+	//JDK1.5之后
+	Integer i = 100;									//自动装箱
+	int i1 = i+200;										//自动拆箱
+	Integer i5 = 127;
+	Integer i6 = 127;
+	System.out.print(i5==i6);								//true
+	Stytem.out.println(i5.equals(i6));						//true
+	Integer i7 = 128;
+	Integer i8 = 128;
+	System.out.print(i7==i8);								//false
+	Stytem.out.println(i7.equals(i8));						//true
+	
+	*-127-128是byte的取值范围,如果在这个取值范围内,自动装箱不会创建对象,而是从常量池中获取,
+	 如果超过了byte的取值范围就会在创建新对象
+	 
+============================================================================================================================================
+																		正则表达式
+1.概念:是指用来描述或者匹配一系列符合某个语法规则的字符的单个字符串,其实就是一种规则。有自己的特殊应用。
+	String类中有一个	String.matches(String regex)		来匹配正则表达式
+	
+	反斜杠字符('\' )用于引入如上表中定义的转义结构，以及引用否则将被解释为未转义结构的字符。 因此，表达式\\匹配单个反斜杠， \{匹配左括号。									非单词字符[^\v]
+	
+	字符类
+	[abc]									a、b、c
+	[^abc]									任何字符,除了a,b,c
+	[a-zA-Z]								a到z 或 A-Z
+	[a-d[m-p]]								a到d或m到p：[a-dm-p](并集)
+	[a-z&&[def]]							d、e或f(交集)
+	[a-z&&[^bc]]							a到z,除了b和c:[ad-z](减去)
+	[a-z&&[^m-p]]							a到z,而非m到p:[a-lq-z](减去)
+
+	任何字符
+	\d										数字[0-9]
+	\D										非数字[^0-9]
+	\w										单词字符[a-zA-Z_0-9]
+	\W										非单词字符:[^\w]
+	
+	数量词
+	X?										X,一次或一次也没有
+	X*										零次或多次
+	X+										一次或多次
+	X[n]									X 恰好n次
+	X[n,]									X 至少n次
+	X[n,m]									X 至少n次,至多m次
+	
+	* 注意:X  代表一个表达式 X [abc]
+	
+	String.split(String regex)				通过正则表达式切割字符串	需要通过\进行转义
+	String.replaceAll(String regex,String s)通过s替换掉所有使用正则表达式匹配出来的字符			
+	
+	//Pattern.compile()接收一个正则表达式
+	Pattern pt = Pattern.compile("a*b");
+	Matcher matcher = pt.matcher("aaaaaab");
+	System.out.println(matcher.matches());			//true
+	
+	 
+	Matcher类
+	返回值类型								函数							解释
+		Boolean								find()							尝试找到匹配模式的输入序列的下一个子序列。 
+		String								group()							返回与上一个匹配的输入的子序列
+		
+		*注意:find()使用一个指针来维护的,下次执行会接着上次指针位置向下循环
+	
+	Pattern类
+		Pattern								compile(String regex) 			将指定的正则表达式编译为模式。
+		Matcher								matcher(CharSequence input)		创建一个匹配器,匹配给定的输入与此模式
+		String[]							split(CharSequence input)		将给定的输入序列分成这个模式的匹配
+			
+		
+	eg:获取一串字符串中的手机号码
+	String string = "我现在得是手机号是:18812345670,之前用过得手机号:13888888888,还用过的手机号:14465555555";
+	String regex = "1[345789]\\d{9}";
+	Pattern pt = Pattern.compile(regex);
+	Matcher m = pt.matcher(string);
+	while(m.find()!=false){
+		System.out.println(m.group());
+	}
+	
+	
+===============================================================================================================================================
+																		Math类
+1.
+
+	
+	Math类常用方法
+	返回值类型								函数							解释
+	xxx										abs()							返回xxx类型数字的绝对值
+	double									random() 						返回值为double值为正号,大于等于0.0,小于1.0
+	double									ceil()[天花板]					返回整数的最大值
+	double									floor()[地板]					返回整数的最小值
+	double									pow(double a,double b)			返回a的b次方
+	double									random()						返回随机生成0.0~1.0之间的数
+	long									round(double a) 				返回四舍五入后的数
+	double									sqrt(double a)					返回开平方后的值
+	
+	Random类
+	xxx										nextXxx(int a)					返回生成Xxx类型的0-a内的随机数(包含0,不包含a)
+	
+	Date类
+		只有一个有参数构造函数和无参数构造函数:
+			Date date = new Date();
+			System.out.print(date);				//打印的是当前系统时间
+			Date d2 = new Date(0);				//当传入的参数为0的时候,这时候表示的时间是从1970年1月1日开始
+			System.out.printf(d2);
+			
+	SimpleDateFormat类
+	String									format(Date date)		将日期对象转换成字符串形式
+	Date									parse(String s)			将字符串转换成对应得日期类型
+	
+	Calendar类
+	int										get(int filed)			获得相应字段得日期
+	void									add(int field, int amount)对制定的字段向前加或向后减
+	void									set(int filed,int amount)设置相应的字段的日期
+	
+==============================================================================================================================================
+																		Set集合
+1.Set集合保证元素的唯一,不保正线程安全。
+	LinkedHasHSet 						怎么存怎么取,因为是HashSet的子类所以也是保证元素唯一的。
+	HashSet								存储是没有顺序的,并不是怎么存储就是怎么获取的。存储对象,保证元素唯一,需要重写HashCode和equals()方法。
+	TreeSet								不仅可以保证元素唯一、还可以对元素进行排序
+	
+	LinkedHashSet 与 HashSet 的区别:
+		LinkedHashSet是不安全的、线程不同步的、可保证元素唯一、但是是集合中唯一一个有序的(怎么存就怎么取)
+		HashSet 也是不安全的、线程不同步的、无序的、可保证元素唯一
+	
+============================================================================================================================================================
+																		Map集合
+1.Map集合,键key是唯一的。
+	添加功能:
+		put(String key,Object object);					向Map集合中添加对象
+	
+	删除功能:
+		clear()											移除所有的键值对元素
+		remove(Object key)								根据键删除删除键值对元素,并把值返回
+		
+	判断功能:
+		boolean containsKey(Object key)					判断集合中是否包含指定的键
+		boolean containsValue(Object value)				判断集合中是否包含指定的值
+		boolean isEmpty()								判断集合是否包含指定的值
+		
+	获取功能:
+		Set<Map.entry<K,V>>	entrySet();
+		get(Object key)									根据键获得值
+		Set<K> KeySet();								获取集合中所有键的集合
+	
+	长度功能:
+		size()											获得集合得长度
+		
+
+	HashMap和Hashtable之间的区别:
+		相同点:底层都是Hash算法
+		不同点:HashMap是线程不安全的,效率高,JDK1.2版本
+			   Hashtale是线程安全的,效率低,JDK1.0版本的
+			   
+			   HashMap可以存储null值和null键
+			   Hashtable不可以存储null键和null值
+	
+	HashMap和HashSet的区别:
+						HashMap					       HashSet
+					实现了Map接口	  		   		 实现Set接口
+					  存储键值对	  				  仅存储对象
+				调用put()向map中添加元素		调用add()方法向Set中添加元素
+				HashMap使用键(Key)计算Hashcode	HashSet使用成员对象来计算hashcode值，
+				HashMap相对于HashSet较快        对于两个对象来说hashcode可能相同，
+				因为它是使用唯一的键获取对象	所以equals()方法用来判断对象的相等性，
+				HashSet较HashMap来说比较慢	    如果两个对象不同的话，那么返回false
+
+						
+						
+	Collections常用方法:
+		void 							sort();								排序
+		int								binarySearch(List<?> list,T key)	搜索
+		T								max(Collection<?> coll)				返回最大值
+		void							reverse(List<?> list)				反转
+		void 							shuffle(List<?> list)				随机替换		 
+	
+	
+	Collections的子类:
+	   List:1.可以允许重复的对象。
+	　　    2.可以插入多个null元素。
+			3.是一个有序容器，保持了每个元素的插入顺序，输出的顺序就是插入的顺序。
+			4.常用的实现类有 ArrayList、LinkedList 和 Vector。ArrayList 最为流行，它提供了使用索引的随意访问，
+			   而 LinkedList 则对于经常需要从 List 中添加或删除元素的场合更为合适。
+		  
+		
+		ArrayList和LinkedList的大致区别如下:
+			1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。 
+			2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。 
+			3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。 
+
+		
+		Vector & ArrayList 
+			1. Vector的方法都是同步的(Synchronized),是线程安全的(thread-safe)，而ArrayList的方法不是，由于线程的同步必然要影响性能，因此,ArrayList的性能比Vector好。 
+			2.当Vector或ArrayList中的元素超过它的初始大小时,Vector会将它的容量翻倍,而ArrayList只增加50%的大小，这样,ArrayList就有利于节约内存空间。
+
+  
+		
+		  
+	   Set：1.不允许重复对象
+	　　    2. 无序容器，你无法保证每个元素的存储顺序，TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。
+			3. 只允许一个 null 元素
+			4.Set 接口最流行的几个实现类是 HashSet、LinkedHashSet 以及 TreeSet。最流行的是基于 HashMap 实现的 HashSet；TreeSet 还实现了SortedSet接口，
+			  因此TreeSet是一个根据其compare()和compareTo()的定义进行排序的有序容器。
+	
+			LinkedHasHSet 						怎么存怎么取,因为是HashSet的子类所以也是保证元素唯一的。(底层链表实现 )
+			HashSet								存储是没有顺序的,并不是怎么存储就是怎么获取的。存储对象,保证元素唯一,需要重写HashCode和equals()方法。
+			TreeSet								不仅可以保证元素唯一、还可以对元素进行排序
+			
+			LinkedHashSet 与 HashSet 的区别:
+				LinkedHashSet是不安全的、线程不同步的、可保证元素唯一、但是是集合中唯一一个有序的(怎么存就怎么取)
+				HashSet 也是不安全的、线程不同步的、无序的、可保证元素唯一
+		
+	
+		Map:
+		1.Map不是collection的子接口或者实现类。Map是一个接口。
+		2.Map 的 每个 Entry 都持有两个对象，也就是一个键一个值，Map 可能会持有相同的值对象但键对象必须是唯一的。
+		3. TreeMap 也通过 Comparator  或者 Comparable 维护了一个排序顺序。
+		4. Map 里你可以拥有随意个 null 值但最多只能有一个 null 键。
+		5.Map 接口最流行的几个实现类是 HashMap、LinkedHashMap、Hashtable 和 TreeMap。（HashMap、TreeMap最常用）
+	
+	面试题：什么场景下使用list，set，map呢？
+	（或者会问为什么这里要用list、或者set、map，这里回答它们的优缺点就可以了）
+	答：
+	如果你经常会使用索引来对容器中的元素进行访问，那么 List 是你的正确的选择。如果你已经知道索引了的话，那么 List 的实现类比如 ArrayList 可以提供更快速的访问,如果经常添加删除元素的，那么肯定要选择LinkedList。
+	如果你想容器中的元素能够按照它们插入的次序进行有序存储，那么还是 List，因为 List 是一个有序容器，它按照插入顺序进行存储。
+	如果你想保证插入元素的唯一性，也就是你不想有重复值的出现，那么可以选择一个 Set 的实现类，比如 HashSet、LinkedHashSet 或者 TreeSet。所有 Set 的实现类都遵循了统一约束比如唯一性，而且还提供了额外的特性比如 TreeSet 还是一个 SortedSet，所有存储于 TreeSet 中的元素可以使用 Java 里的 Comparator 或者 Comparable 进行排序。LinkedHashSet 也按照元素的插入顺序对它们进行存储。
+	如果你以键和值的形式进行数据存储那么 Map 是你正确的选择。你可以根据你的后续需要从 Hashtable、HashMap、TreeMap 中进行选择。
+	
+
+===============================================================================================================================================================================
+																				IO流
+1.异常
+	Throwable
+		Error
+		Exception
+			RuntimeException
+ 
+2.Java中异常分为2大类,一类是编译时异常,一类是运行时异常
+
+	面试题:
+		final、finally、finalize的区别:
+			①final可以修饰类,不能继承,修饰方法,不能被重写,修饰变量,只能赋值一次
+			②finally是try语句中的一个语句体,不能单独使用,用来释放资源
+			🌂finalize 当垃圾回收器确定不存在该对象的更多引用时,由对象的垃圾回收器调用此方法。
+		
+		如果catche里边有return语句,请问finally的代码还会执行吗？如果会,请问是在return前还是return后。
+			会执行,实在建立返回通道之后,但是不影响catche返回的值
+		
+========================================================================================================================================================================================
+																				File
+1.File表示文件或目录
+	File构造方法:
+		File(String pathname);								根据当前路径得到一个File对象
+		File(String parent,String child)					根据一个目录和一个子文件/目录得到File对象
+		File(File parent,String child)						根据一个父File对象和一个子文件/目录得到File对象
+		
+	常用方法:
+		创建功能:
+		boolean								createNewFile()						如果没有该文件就创建,如果有就不创建了
+		boolean								mkdir()								创建文件夹,如果存在就不创建了
+		boolean								mkdirs()							创建文件夹,如果父文件夹存在就不创建了,父文件夹不存在,帮你创建出来
+		boolean								renameTo(File dest)					把文件名重命名未指定的文件路径
+		boolean								delete()							删除文件或文件夹
+	重命名注意事项:
+		如果路径名相同,就是改名字。
+		如果路径名不同,就是改名并剪切。
+	删除注意事项:
+		Java中删除不进入回收站
+		要删除一个文件夹,文件夹中不能包含东西。	
+		
+		判断功能:
+		boolean								isDirectory()						判断是否是目录
+		boolean								isFile()							判断是否是文件
+		boolean								exists()							判断是否存在
+		boolean								canRead()							判断是否可读
+		boolean								canWrite()							判断是否可写
+		boolean								isHidden()							判断是否隐藏
+		
+		获取功能:
+		String 								getAbsolutePath()					获取绝对路径
+		String								getPath()							获取路径
+		String								getName()							获得文件名称
+		long								length()							获得长度,字节数
+		long								lastModified()						获得最后一次的修改时间,毫秒值
+		String[]							list()								获取指定目录下的所有文件或者文件夹的名称数组
+		File[]								listFiles()							获取指定目录下的所有文件或者文件夹的File数组
+	
+		
+	文件过滤器:FilenameFileter()接口
+		
+		
+		
+		
+==============================================================================================================================================================================
+																			IO字符流
+1.IO用来处理设备之间的数据传输
+	Java对数据的操作是通过流的方式
+	Java用于操作流的类都在IO包中
+	流按照流向分为:输入流和输出流
+	按操作类型分为两种:
+		字节流:字节流可以操作任何数据,因为在计算机中任何数据都是以字节的形式存储的
+		字符流:字符流只能操作字符数据,比较方便
+	
+2.IO流常用父类
+	字节流的抽象父类:
+		InputStream
+		OutputStream
+	字节流的抽象父类:
+		Reader
+		Writer
+		
+	FileInputStream类(文件的结束标记为-1) 常用函数
+	返回值类型											函数									解释
+		int												read(byte[] byte)						从硬盘文件中读取数据
+		int												write(byte[] byte,int off,int len)		向硬盘文件写入数据
+		int												available() 							返回从此输入流中可以读取的字节个数
+		void											finalize() 								确保这个文件输入流的close方法没有更多的引用时被调用
+		
+		
+	
+	面试题:
+		read()方法读取的是一个字节,为什么返回的是int,而不是byte?
+	答:因为字节输入流可以操作任意类型的文件,比如图片、音频等,这些文件都是以二进制形式存储的,如果每次读取都是返回byte,有可能在读取到中间的时候遇到11111111
+	那么11111111是byte类型的-1,我们程序遇到-1就会停下来,后面的数据就读取不了了,所以在读取的时候用int类型接收,如果11111111会在其前面补上24个0是4个字节,那么byte
+	类型的-1,就变成int类型的255了这样就可以保证整个数据被读完,而结束编辑的-1就是int类型。
+	
+	FileOutputStream类
+		构造函数:
+			如果想要续写:
+				FileOutputStream fos = new FileOutputStream(文件名,true);
+				
+	 
+	
+		
+	BufferedInputStream 和 BufferedOutputStream 是对InputStream和OutputStream的包装.	
+	BufferedInputStream内置了一个buffer=byte[8192] 字节大小的字节数组,所以,读取文件数据时候,
+	首先将数据读取到缓冲区,程序从缓冲区一个字节一个字节的读取到输出缓冲区,然后输出缓冲区满后,
+	在将文件完全写到文件当中.
+		
+	FileOutputStream类
+		int												close()									关闭输出流
+		void											flush()									强制刷新缓冲区
+	
+	close和flush的区别:
+		close具备刷新的功能,在关闭流之前先刷新一次缓冲区,将缓冲区的字节全都刷新到文件上,在关闭之后,不能再写数据.
+		flush具备刷新的功能,刷新完毕后,还可以继续写数据.
+		
+		
+		
+	图片加密:
+		一个数亦或一个数两次就是它本身。所以我们可以图片保存的时候将它亦或一个数,这个数也称之为密钥。解密时候,代码不用改变
+		
+	
+	BufferedReader和BufferedWriter	
+		内置一个8192的缓冲区。
+	BufferedReader和BufferedWriter 的函数	
+	readLine()					读取一行数据,遇到('\r','\n'结束)
+	newLine()					写入一个行分隔符			
+		
+	newLine() 与 \r\n的区别:
+		newLine()是跨平台的方法,\r\n只支持windows系统
+		
+		
+		
+		

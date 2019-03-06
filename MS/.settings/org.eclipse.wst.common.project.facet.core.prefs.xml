@@ -1,0 +1,15 @@
+<root>
+  <facet id="jst.jsf">
+    <node name="libprov">
+      <attribute name="config-id" value="jst.jsf_1.2"/>
+      <attribute name="copy-tlds" value="true"/>
+      <attribute name="provider-id" value="me-jsf-library-provider"/>
+      <attribute name="version-id" value="mojarra_1.2_04"/>
+    </node>
+  </facet>
+  <facet id="me.spring">
+    <node name="libprov">
+      <attribute name="provider-id" value="spring-no-op-library-provider"/>
+    </node>
+  </facet>
+</root>

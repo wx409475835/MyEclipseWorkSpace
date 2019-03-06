@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<select id="getUserById" resultType="com.nyist.mybatis.pojo.User" parameterType="java.lang.Integer">
+		select id,username,birthday,sex,address from user where id=#{id};
+	</select>
+	
+	<!-- 插入用户 -->
+	<!-- 使用自增   keyProperty与之配套使用useGeneratedKeys -->
+	<insert id="insertUser" keyProperty="id" useGeneratedKeys="true">
+	<!-- 
+		selectKey:主键返回
+		keyProperty:user中的属性
+		resultType:主键数据类型
+		order:指定selectKey何时执行,AFTER之后 BEFORE 之前执行
+	 -->
+	 	<!-- 第二种配置方式 -->
+		<!-- <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE">
+			slect LAST_INSERT_ID();
+		</selectKey> -->
+		insert into user(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
+	</insert>
+</mapper>

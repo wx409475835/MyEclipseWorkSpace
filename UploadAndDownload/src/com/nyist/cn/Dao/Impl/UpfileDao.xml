@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nyist.cn.Dao.UpfileDao">
+	<insert id="addfile"  parameterType="com.nyist.cn.model.Upfile">
+		insert into upfile(id,uuidname,filename,savepath,uptime,description,username) values(#{id},#{uuidname},#{filename},#{savepath},#{uptime},#{description},#{username})
+	</insert>
+	
+	<select id="getAllFile" resultType="com.nyist.cn.model.Upfile">
+		select * from upfile order by uptime desc
+	</select>
+	
+	<select id="findUpfile" parameterType="java.lang.String" resultType="com.nyist.cn.model.Upfile">
+		select * from upfile where id = #{id}
+	</select>
+	
+	<delete id="deleteupfile" parameterType="java.lang.String">
+		delete from upfile where id = #{id}
+	</delete>
+</mapper>

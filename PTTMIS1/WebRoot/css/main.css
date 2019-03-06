@@ -1,0 +1,133 @@
+body {
+			margin: 0px;
+			padding: 0px;
+			background-color: #fffff;
+			font-family: 微软雅黑;
+		}
+		
+		.div1 {
+			float: left;
+			position: relative;
+			width: 1366px;
+			height: 50px;
+			/* border-radius-left: 2px; */
+			background-color: #378bbe;
+			/* margin-left: 10px; */
+			margin-top: 0px;
+			border-radius:0px 0px 10px 10px;
+		}
+		
+		.div2 {
+			float: left;
+			width: 600px;
+		}
+		
+		.div2 img { /* width:50px;
+								height:61px; */
+			margin-top: 10px;
+			margin-left: 30px;
+			padding-left: 0px;
+			border: none;
+			background-color: #f5f5f5;
+			/* filter:box-shadow(5px ); */
+		}
+		
+		.div2 span {
+			font-family: 微软雅黑;
+			position: absolute;
+			margin-top: 23px;
+			margin-bottom: 130px;
+			margin-left: 12px;
+			font-family: serif;
+			font-size: 22px;
+		}
+		
+		.div3 {
+			position: relative;
+			float: left;
+			margin-top: 18px;
+			margin-left: 320px;
+			width: 248px;
+			height: 25px;
+			background-color: #ffffff;
+			border-radius: -webkit-calc(3px);
+		}
+		
+		.div3 span {
+			float: left;
+			position: relative;
+			margin-top: 6px;
+			margin-left: 6px;
+			font-family: arial, helvetica, sans-serif;
+			font-size: 14px;
+			font-weight:700;
+			color: #7171C6;
+			border-radius: -webkit-calc(10px);
+		}
+		
+		.div3 img {
+			float: left;
+			position: relative;
+			margin-left: 0px;
+			margin-top: 0px;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.div4 {
+			position: relative;
+			float: left;
+			/* border: solid red 1px; */
+			margin-top: 18px;
+			margin-left: 40px;
+			width: 80px;
+			height: 25px;
+			background-color: #ffffff;
+			border-radius: -webkit-calc(6px);
+		}
+		
+		.div4 img {
+			float: left;
+			position: relative;
+			width: 14px;
+			height: 14px;
+			margin-left: 6px;
+			margin-top: 6px;
+		}
+		
+		.div4 #LoginName{
+			text-align: center;
+			font-family: 微软雅黑;
+			font-size: 14px;
+			line-height: 25px;
+			font-weight: 500;
+			margin-left: 10px;
+			font-family: 微软雅黑;
+			color: #7171C6;
+		}
+		
+		.div4 span {
+			text-align: center;
+			line-height: 16px;
+			font-weight: 800;
+			font-size: 14px;
+			font-family: 微软雅黑;
+		}
+		
+		a:link {
+			color: #e5ebee;
+			text-decoration: none; /* 未访问：蓝色、无下划线  */
+		}
+		
+		a:active: {
+			color: #e5ebee; /* 激活：红色     */
+		}
+		
+		a:visited {
+			color: #e5ebee;
+			text-decoration: none; /* 已访问：purple、无下划线 */
+		}
+		
+		a:hover {
+			text-decoration: underline; /* 鼠标移近：红色、下划线 */
+		}

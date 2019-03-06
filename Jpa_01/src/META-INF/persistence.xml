@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="Jpa_01" transaction-type="RESOURCE_LOCAL">
+		<!-- 配置使用什么ORM 产品作为JPA的实现 徐需要注意得是 persistence.xml 是固定的文件名 1.实际上配置的是 javax.persistence.spi.PersistenceProvider 
+			接口的实现类 2.若Jpa 项目中只有一个JPA的实现产品,则也可以不配置该节点 -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<!-- <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
+
+		<!-- 添加持久化类 -->
+		<class>com.nyist.Jpa.Entity.Customer</class>
+		<class>com.nyist.Jpa.Entity.Order</class>
+		<class>com.nyist.Jpa.Entity.Manager</class>
+		<class>com.nyist.Jpa.Entity.Department</class>
+		<class>com.nyist.Jpa.Entity.Item</class>
+		<class>com.nyist.Jpa.Entity.Category</class>
+		
+		<!-- 配置二级缓存的策略 -->
+		<!-- 
+			<shared-cache-mode> 节点：若 JPA 实现支持二级缓存，该节点可以配置在当前的持久化单元中是否启用二级缓存，可配置如下值：
+			ALL：所有的实体类都被缓存
+			NONE：所有的实体类都不被缓存. 
+			ENABLE_SELECTIVE：标识 @Cacheable(true) 注解的实体类将被缓存
+			DISABLE_SELECTIVE：缓存除标识 @Cacheable(false) 以外的所有实体类
+			UNSPECIFIED：默认值，JPA 产品默认值将被使用		
+		 -->
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		
+		
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql:///jpa" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="root" />
+
+			<!-- 配置JPA 实现产品 -->
+			<!-- 配置Hibernate 的实现 -->
+			<!-- 格式化Sql -->
+			<property name="hibernate.format_sql" value="true" />
+			<!-- 在控制台展示Sql -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- 生成数据表的策略 -->
+			<property name="hibernate.hbm2ddl.auto" value="update"></property>
+			
+			<!-- 启用  二级缓存相关 -->
+			<!-- 二级缓存的产品 -->
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"></property>
+			<!-- 查询缓存 -->
+			<property name="hibernate.cache.use_query_cache" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

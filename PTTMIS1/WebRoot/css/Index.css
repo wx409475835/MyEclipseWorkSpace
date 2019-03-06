@@ -1,0 +1,162 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+}
+
+.index-div {
+	float: left;
+	position: absolute;
+	width: 205px;
+	height: 665px;
+	padding: 0px;
+	background-color: #ffffff;
+	/* border: 1px red solid; */
+}
+
+.index-div ul {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	position: relative;
+	float: left;
+	/* border: 1px blue solid; */
+}
+
+.index-div-li {
+	width: 205px;
+	height:30px;
+	background-color: #ffffff;
+	text-align: center;
+	border-bottom: 1px solid;
+	border-bottom-color: #D1D1D1;
+	/* border: 1px pink solid; */
+}
+
+.index-div-li-img {
+	position:relative;
+	float: left;
+	position: relative;
+	margin-left: 20px;
+	margin-top: 6px;
+	width: 15px;
+	height: 15px;
+}
+
+.index-div-li-a {
+	float: left;
+	position: relative;
+	margin: 3px 0px;
+	margin-left: 4px;
+	text-decoration: none;
+	font-family: 微软雅黑;
+}
+
+.index-div-li-span {
+	float: left;
+	position: relative;
+	margin: 8px 0px;
+	margin-left: 4px;
+	text-decoration: none;
+	font-size: 14px;
+	line-height: 14px;
+	color: #551a8b;
+}
+
+.index-div-li-data a {
+	font-family: 微软雅黑;
+}
+
+.index-div-li-dataSoutce {
+	width: 205px;
+	height: 30px;
+	background-color: #ffffff;
+	border-bottom: 1px solid;
+	border-bottom-color: #D1D1D1;
+	background-position: left;
+	/* border: 1px yellow solid; */
+}
+
+.index-div-li-dataSoutce img {
+	clear: both;
+	position: relative;
+	float: left;
+	margin-top: 8px;
+	margin-left: 50px;
+	margin-right: 4px;
+	width: 15px;
+	height: 15px;
+}
+
+.index-div-li-dataSoutce a {
+	position: relative;
+	float: left;
+	text-decoration: none;
+	margin-bottom: 10px;
+	margin-top: 2px;
+}
+
+.img1 {
+	clear: both;
+	position: left;
+	float: left;
+}
+
+.index-div-li-div {
+	float: left;
+	position: relative;
+	width: 205px;
+	height: 260px;
+	background-color: #f3f3f3;
+	font-family: 微软雅黑;
+	border: 1px block solid;
+}
+
+.index-div1 {
+	float: left;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 15px;
+	width: 155px;
+	height: 110px;
+	border: solid 1px #ffffff;
+	background-color: #ffffff;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.index-div1 img {
+	margin-top: 10px;
+}
+
+.index-div2 {
+	float: left;
+	position: relative;
+	margin: 0px 15px;
+	width: 155px;
+	height: 110px;
+	border: solid red;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	border: solid 1px #ffffff;
+	background-color: #ffffff;
+}
+
+.index-div2 span {
+	position: relative;
+	float: left;
+	margin-top: 8px;
+	margin-left: 7px;
+}
+
+.index-div2 img {
+	clear: both;
+	position: relative;
+	float: left;
+	margin-top: 10px;
+}
+
+.shouye{
+	color:block;
+	font-family: 微软雅黑;
+}

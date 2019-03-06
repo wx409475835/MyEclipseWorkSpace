@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>南阳理工学院后勤管理系统</title>
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <link rel="stylesheet" href="css/icon.css"  media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		 $(function(){
+	      	  var url= location.search;
+			  console.log("$url:"+url);
+			  var theRequest = url.substring(url.lastIndexOf("=")+1);
+			  var uuid = theRequest.substring(0,theRequest.indexOf("."));
+			  console.log("adffdd:"+uuid);
+			  $("#img").prop("src","downloadpictures/"+uuid+".png");
+	      
+	      	  $("#download").click(function(){
+				var uuidname = $("#uop").attr("value");		//保存uuid文件名
+				console.log("downsfsfds:"+uuidname);
+				if(uuidname!=null){
+			    	if(uuidname=="${uuidname_alter}"){
+						var url= location.search;
+						console.log("url:"+url);
+				  		var theRequest = url.substring(url.lastIndexOf("=")+1);
+				  		var uuidname = theRequest.substring(0,theRequest.indexOf("."));
+				  		//var uuidname = theRequest.split("\\.")[0];
+				  		console.log("downthe:"+theRequest);
+				  		console.log("down-loaduuidname:"+uuidname);
+					}	
+					window.location.href=encodeURI("download.do?filename="+uuidname+".png","UTF-8");
+				}
+				else{
+				    window.location.href=encodeURI(urlstr,"UTF-8");
+				    console.log("download");
+				}
+			});
+	      });
+	</script>
+	<style type="text/css">
+			.left{
+		 margin-top:0px;
+		 width:200px;
+		 height:490px;
+		 background-color:#ffffff;
+		 margin-left:120px;
+		 float: left;
+		border-color:#000;
+		border-width:1px;
+		
+		 
+		}
+		/*.right{
+			position: absolute;
+			top: 90px;
+			right: 70px;
+			 padding-top:90px;
+			 padding-right: 70px;
+			 width:200px;
+			 height:490px;
+			 background-color:#ffffff;
+			 margin-right:40px;
+			 float: right;
+			border-color:#000;
+			border-width:1px;
+		}*/
+		/*.right{
+		  margin-top:20px;
+		  width:200px;
+		  height:490px;
+		  background-color:#F5F5F5;
+		  margin-right:135px;
+		  float: right;
+			
+		}*/
+		
+		.container{
+		  width:700px;
+		  height: 490px;
+		  margin:auto;
+		  padding-top: 0px;
+		  padding-left: 0px;
+		  border-color:#000;
+		  background-color:#ffffff;
+		border-width:1px;
+		  
+		}
+		
+		.button2{
+		  
+		   position: relative;
+		  /*top: 50px;
+		  left: 50px;*/
+		 /* padding-left: 10px;*/
+		  margin-bottom: 30px;
+		  padding-bottom: 25px;
+		  width: 80px;
+		  height: 5px;
+		  border: none;
+		  background: #44b548;
+		  border-radius: 2px;
+		  font-size:15px;
+		  letter-spacing: 5px;
+		  cursor: pointer;
+		  color: white;
+		  vertical-align:middle ;
+		  text-align:center;
+		}
+		.low{
+			width: 100%;
+			height: 50px;
+			margin-bottom: 0px;
+		
+		
+		}
+	</style>
+</head>
+<body style="background-color: #f6f8f9;">
+	
+   <div class="top" style="width: 100%; height: 60px;  padding-top:10px;padding-bottom:20px;background-color: #7BA7AB; color: white; font-size: 20px;">
+ 	<div style="padding-left: 60px; padding-top: 8px; float: left;">  南阳理工学院后勤管理系统</div>
+ 	<div  class="btn1" style="padding-right: 100px;float: right; padding-top: 8px;"> 
+ 		<div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
+      root <span class="caret" ></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="exit.do">退出登陆</a></li>
+      </ul>
+    </div>
+ 	</div>
+   </div>
+   
+   
+    <div class="zhongjian"  style="width: 100%; height: 100%; margin-top: 40px;">
+	   <div class='left'>
+		  <div style='font-size:20px; margin-left:50px;padding-top: 15px; font-size: 25px; font-weight: 500;'> 二维码  </div>
+		  <div  style="margin-top:30px; margin-left:25px; width: 150px; height: 150px; border: 2px solid #e7e6eb; background-color: #adadaf;">
+	  		<img src='' style="margin-top:0px; margin-left:0px; width: 150px; height: 150px; border: 2px solid #e7e6eb;" id="img"></img>
+	   	  	<!-- <img src='' style="margin-top:30px; margin-left:25px; width: 150px; height: 150px; border: 2px solid #e7e6eb;" id="img"></img> -->
+	   	    <button type="button" class="button2" style="top: 300px;left: 30px;" id="download">下载</button>
+	  	 </div>
+	   </div> 
+	    <div class="container">
+		    <div id="editor" value="^" style="padding-top: 0px; margin-top: 0px;" >

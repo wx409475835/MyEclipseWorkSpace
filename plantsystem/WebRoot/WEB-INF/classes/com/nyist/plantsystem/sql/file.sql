@@ -1,0 +1,1 @@
+create table file(uuidname varchar(100) primary key,filename varchar(100),dat varchar(100));

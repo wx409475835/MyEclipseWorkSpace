@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	
+	<!-- 配置组件扫描 -->
+	<context:component-scan base-package="com.nyist.plantsystem"></context:component-scan>
+	
+	<!-- 配置mvc注解驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 配置视图解析器 -->
+	<!-- 配置sprigmvc视图解析器：解析逻辑试图，前缀+逻辑试图+后缀====/WEB-INF/jsps/xxx.jsp -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 拦截器，拦截没有登陆访问Action的情况 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/fileupload.do"/>
+			<mvc:mapping path="/main.do"/>
+			<mvc:mapping path="/allFiles.do"/>
+			<mvc:mapping path="/alterplant.do"/>
+			<mvc:mapping path="/delete.do"/>
+			<mvc:mapping path="/addplant.do"/>
+			<mvc:mapping path="/ShowImg.do"/>
+			<mvc:mapping path="/createQRCode.do"/>
+			<mvc:mapping path="/selectAllFiles.do"/>
+			<mvc:mapping path="/upload.do"/>
+			<mvc:mapping path="/download.do"/>
+			<mvc:mapping path="/alterplantAction.do"/>
+			<mvc:mapping path="/alter.do"/>
+			<bean class="com.nyist.plantsystem.Interceptor.PlantSystemInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

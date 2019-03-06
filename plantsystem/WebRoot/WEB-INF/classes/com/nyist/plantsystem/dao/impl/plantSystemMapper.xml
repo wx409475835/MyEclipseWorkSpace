@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nyist.plantsystem.dao.plantSystemMapper" >
+
+    <!-- 查询简单的用户信息 -->
+    <!--<select id="queryUserSimplyInfoById" resultType="com.imooc.pojo.SysUser"-->
+            <!--parameterType="java.lang.String" >-->
+	    <!--select-->
+	    	<!--*-->
+	    <!--from-->
+	    	<!--sys_user-->
+	    <!--where-->
+	    	<!--id = #{id,jdbcType=VARCHAR}-->
+	<!--</select>-->
+    <!--添加用户-->
+    <insert id="insertLoginAccount" parameterType="com.nyist.plantsystem.model.loginAccount">
+        insert into sys_login(id,username,upassword) value(#{id},#{username},#{password})
+    </insert>
+
+	<select id="selectAccount" resultType="java.lang.String">
+		select id from sys_login where username=#{username} and upassword=#{password}
+	</select>
+	
+	<insert id="insertFileInfo" parameterType="com.nyist.plantsystem.model.PageBean">
+		insert into file(uuidname,filename,dat) value(#{uuidname},#{filename},#{dat})
+	</insert>
+	
+	<select id="selectFileInfo" parameterType="java.lang.String" resultType="com.nyist.plantsystem.model.PageBean">
+		select uuidname,filename,dat from file where filename like concat('%',#{name},'%')
+	</select>
+	
+	<delete id="deleteFileInfo" parameterType="java.lang.String">
+		delete from file where uuidname = #{uuidname}
+	</delete>
+</mapper>

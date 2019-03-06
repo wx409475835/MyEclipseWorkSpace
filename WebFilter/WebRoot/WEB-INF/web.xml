@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<filter>
+		<filter-name>FileterDemo</filter-name>
+		<filter-class>com.nyist.webFilter.Filter.FilterDemo1</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FileterDemo</filter-name>
+		<url-pattern>/index.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>CharacterEncoding</filter-name>
+		<filter-class>com.nyist.webFilter.Example.CharacterEncodingFilter</filter-class>
+			<init-param>
+				<param-name>charset</param-name>
+				<param-value>UTF-8</param-value>
+			</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>NoCacheFilter</filter-name>
+		<filter-class>com.nyist.webFilter.Example.NoCacheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>NoCacheFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- 设置缓存jsp页面得css js jpg 的时间 -->
+	<filter>
+		<filter-name>CacheFilter</filter-name>
+		<filter-class>com.nyist.webFilter.Example.CacheFilter</filter-class>
+		<init-param>
+			<param-name>jpg</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>css</param-name>
+			<param-value>10</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>js</param-name>
+			<param-value>20</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*.jpg</url-pattern>
+	</filter-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletDemo1</servlet-name>
+		<servlet-class>com.nyist.webFilter.Servlet.ServletDemo1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDemo1</servlet-name>
+		<url-pattern>/servletDemo1</url-pattern>
+	</servlet-mapping>
+
+</web-app>

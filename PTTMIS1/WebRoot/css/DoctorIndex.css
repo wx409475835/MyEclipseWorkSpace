@@ -1,0 +1,79 @@
+.index-div {
+	width: 1365px;
+	height: 101px;
+}
+
+.index-div1 {
+	position: absolute;
+	width: 1365px;
+	height: 30px;
+	background-color: #EAEAEA;
+	margin-top: 1px;
+	border-radius: -webkit-calc(8px);
+	/* border: 1px red solid; */
+}
+
+.index-div2 {
+	position: absolute;
+	width: 1365px;
+	height: 64px;
+	/* border: solid blue 1px; */
+	background-color: #E0E0E0;
+	margin-top: 25px;
+	border-radius: -webkit-calc(8px);
+}
+
+.index-div1 ul {
+	position: relative;
+	float: left;
+	padding: 0 5px;
+	margin-top: 0px;
+	margin-left: 10px;
+	/* border: 1px red solid; */
+}
+
+.index-div1 li {
+	float: left;
+	text-align: center;
+	list-style: none;
+	height: 30px;
+	/* border: solid orange 1px; */
+	float: left;
+	position: relative;
+	font-size: 16px;
+	font-family: 微软雅黑;
+	padding: 0px 15px;
+	line-height: 18px;
+}
+
+.index-div1 li:HOVER {
+	background-color: #DBDBDB;
+}
+
+.index-div1 a {
+	position: relative;
+	float: left;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	color: #378bbe;
+	margin: 0 10px;
+	margin:5px 0px;
+	
+}
+
+.index-div1 a:hover {
+	float: left;
+	text-decoration: none;
+	/* background:url("images/Ps_03.png") repeat-x; */
+}
+
+
+.index-div1 img{
+	clear:both;
+	position: relative;
+	float: left;
+	margin-top: 7px;
+	margin-right: 5px;
+	width: 15px;
+	height: 15px;
+}

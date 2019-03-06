@@ -1,0 +1,137 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.center-div {
+	position: absolute;
+	position: 0px;
+	/* border:solid red; */
+	float: left;
+	margin-top: 55px;
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #ececec;
+	border-top-color: #ececec;
+	font-family: 微软雅黑;
+}
+
+.center-div table {
+	position: relative;
+	/* float: left; */
+	/* margin-left: 530px; */
+	margin:0 auto;
+	/* border: 1px red solid; */
+}
+
+td {
+	font-family: 微软雅黑;
+	/* font-size: 19px; */
+	font-size: 14px;
+}
+
+.center-div-input {
+	text-align: center;
+	width: 300px;
+	height: 25px;
+	border-radius: -webkit-calc(10px);
+	font-size: 14px;
+	font-family: 微软雅黑;
+}
+
+.left_div {
+	position: relative;
+	float: left;
+	width: 50%;
+	margin-top: 340px;
+	overflow: auto;
+	height: 300px;
+	margin-right: 10px;
+	border-right: 1px solid #ececec;
+	overflow:auto;
+	/* border: 1px red solid; */
+	/* margin: auto 0; */
+}
+
+.left_div table {
+	margin-top: 10px;
+	width: 540px;
+	border-radius: -webkit-calc(6px);
+	border: 1px solid #ececec;
+	font-family: 微软雅黑;
+	text-align: center;
+	font-size: 14px;
+}
+
+#patient-left-div {
+	border-radius: -webkit-calc(4px);
+	background-color: #f5f5f5;
+	border-radius: -webkit-calc(6px);
+}
+
+#patient-right-div {
+	border-radius: -webkit-calc(4px);
+	background-color: #f5f5f5;
+	border-radius: -webkit-calc(6px);
+}
+
+.left_div tr td{
+	width: 130px;
+	font-size: 14px;
+}
+
+.right_div table {
+	margin-top: 10px;
+	width: 530px;
+	border-radius: -webkit-calc(6px);
+	border: 1px solid #ececec;
+	font-family: 微软雅黑;
+	text-align: center;
+	font-size: 14px;
+}
+
+.right_div {
+	position: relative;
+	float: left;
+	/* border: 1px blue solid; */
+	width: 48%;
+	/* height: 100%; */
+	overflow: auto;
+	margin-top: 340px;
+	height: 300px;
+	/* margin:auto 0px; */
+}
+
+.addcount-div1 {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 35px;
+	border-bottom-color: #ececec;
+	border-bottom: 1px solid #ececec;
+	border-top-color: #ececec;
+	border-top: 1px solid #ececec;
+	margin-top: 8px;
+}
+
+.addcount-div1 p {
+	position: relative;
+	float: left;
+	font-size:16px;
+	color: #378bbe;
+	margin: 6px 0;
+	font-family: 微软雅黑;
+	margin-left: 30px;
+}
+
+.drug_inp {
+	height: 25x;
+	/* margin-left: 4px; */
+	border-radius: -webkit-calc(7px);
+}
+
+.drug-btn {
+	width: 60px;
+	height: 24px;
+	border-radius: -webkit-calc(7px);
+}

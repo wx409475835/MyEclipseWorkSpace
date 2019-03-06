@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>KVM虚拟化应用登陆页面</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+	<style type="text/css">
+		.login-top-div{
+			font-size:20px;
+			font-family:微软雅黑;
+			clear:both;
+			position: absolute;
+			width:320px;
+			/* float: left; */
+			/* border: 1px red solid; */
+			margin-top: 50px;
+			color:#8B8378;
+			/*color: #cfcbca;*/
+			margin-left: 85;
+			/* filter:alpha(opacity=80);  
+		    -moz-opacity:0.8;  
+		    -khtml-opacity: 0.8;  
+		    opacity: 0.8;  */
+		}	
+		
+		.login-top-div:HOVER{
+			color: 	#737373;
+			cursor: pointer;
+		}
+		
+		.login-div{
+			position: relative;
+			float:left;
+			width: 380px;
+			height: 420px;
+			margin-top:240px;
+			margin-left:780px;
+			border: 1px solid #D1DD1;
+			background-color: #D1D1D1;
+			border-radius: -webkit-calc(20px);
+			filter:alpha(opacity=80);  
+		  -moz-opacity:0.8;  
+		  -khtml-opacity: 0.8;  
+		  opacity: 0.6; 
+		    /* border:1px solid red;  */
+		}
+		
+		.login-div table{
+			/*border: 1px solid red; */
+			position:relative;
+			float:left;
+			margin: 0px auto;
+			margin-top: 70px;
+			position: absolute;
+			width: 340px;
+			height: 300px;
+			margin-left: 40px;
+		
+		}
+		
+	</style>
+  </head>
+  
+  <body background="images/Login.jpg">
+    <form method="post" action="LoginAction.apex">
+    	<div class="login-div">
+    		<div class="login-top-div">KVM虚拟化管理应用</div>
+    		<table>
+	    		<tr>
+	    			<td><span>用户名</span><input class="login-div-inp" type="text" name="username"/></td><td style="width: 30px;margin-left: 0px;margin-top: 5px;"><img id="uimg"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td><span>密码</span><input class="login-div-inp" type="password" name="password"/></td>
+	    		</tr>
+	    		<tr class="submit-tr">
+	    			<td><input id="login" class="login-div-inp" type="submit" value="登陆" style="margin-right: 40px;"/></td>
+	    		</tr>
+	    	</table>
+    	</div>
+    </form>
+  </body>
+</html>

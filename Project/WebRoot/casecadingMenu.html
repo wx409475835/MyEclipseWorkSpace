@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>级联查询</title>
+  	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+  	<script type="text/javascript">
+  		
+  		$.ajax({
+  				type:"post",
+  				url:"CasecadingMenuServlet",
+  				data:"city=bj",
+  				success:function(result){
+  					//在次返回的时候  清空当前 id = area; 的select;里边的内容
+  					$("#area").empty();
+  					//得到的是一个json 字符串(数组)
+  					var selectArray = $.parseJSON(result);
+  					for(var i=0;i<selectArray.length;i++){
+  						var op = $("<option>"+selectArray[i]+"</option>");
+  						$("#area").append(op);
+  					}
+  				}
+  			});
+  		
+  		
+  		$(document).ready(function(){
+  			$("#city").change(function(){
+  				//1.获得选中的下拉列表框 的数值 
+  				var city = $("#city option:selected").val();
+  				console.log(city);
+  				//2.通过ajax发送异步请求
+  				$.ajax({
+  					type:"post",
+  					url:"CasecadingMenuServlet",
+  					data:"city="+city,
+  					success:function(result){
+  						//在次返回的时候  清空当前 id = area; 的select;里边的内容
+  						$("#area").empty();
+  						//得到的是一个json 字符串(数组)
+  						var selectArray = $.parseJSON(result);
+  						console.log(selectArray);
+  						for(var i=0;i<selectArray.length;i++){
+  							var op = $("<option>"+selectArray[i]+"</option>");
+  							$("#area").append(op);
+  						}
+  					}
+  				});
+  			});
+  		});
+  		
+  		
+  	</script>
+  </head>
+  	
+  <body>
+   	<select name="city" id="city">  
+   		<option value="bj">北京</option>
+   		<option value="sh">上海</option>
+   		<option value="tj">天津</option>
+   		<option value="hn">河南</option>
+   	</select>
+   	<select name="area" id="area">
+   		
+   	</select>
+  </body>
+</html>

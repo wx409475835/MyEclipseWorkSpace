@@ -1,0 +1,127 @@
+﻿</div>
+		 </div>
+  </div>
+  
+  <div class="low" style="width: 100%; height: 80px; background-color: #ffffff;">
+	<input type="hidden" id="uop" value="${uuidname_alter}"/>
+  	<button type="button" class="button2" style="top: 30px;left: 700px;"  onclick="getContent()">保存</button>
+  	<button type="button" class="button2" style="top: 30px;color:#000000; left: 800px;background-color: #dcdcdc;" onclick="back()">返回</button>
+  </div>
+  	<script type="text/javascript">
+ 		$(function(){
+ 			$("#btn_submit").click(function(){
+ 				 var obj = document.getElementById("inputfile").files[0];
+ 				 var formFile = new FormData();
+	             formFile.append("action", "/upload.do");  
+	             formFile.append("file", obj); 				//加入文件对象
+	              var data = formFile;
+	               $.ajax({
+	                   url: "upload.do",
+	                   data: data,
+	                   type: "Post",
+	                   dataType: "json",
+	                   cache: false,//上传文件无需缓存
+	                   processData: false,//用于对data参数进行序列化处理 这里必须false
+	                   contentType: false, //必须
+	                   success: function (result) {
+	                       alert(result);
+	                   }
+	               });
+ 			});
+ 		});
+ 	</script>
+ 	<!--<div class="right" >
+			<div class="form-group">
+				<label for="inputfile">文件输入</label>
+				<input type="file" id="inputfile">
+				
+			</div>
+			<button type="submit" id="btn_submit" class="btn btn-default">提交</button>
+	</div>-->
+    <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+    <script type="text/javascript">  
+	  var E = window.wangEditor;
+      var editor = new E('#editor');
+      editor.customConfig.uploadImgShowBase64 = true;
+     // editor.customConfig.uploadImgServer = '/upload' 
+      editor.create() ;
+           
+      function  getContent(){
+      	var text = editor.txt.html();
+      	var oldstr = document.body.innerHTML;
+      	//alert(oldstr);
+      	//alert(text);
+      	$(function(){
+      		var uuidname = $("#uop").attr("value");		//保存uuid文件名
+      		console.log("uuidname-1:"+uuidname);
+      		var urlstr;	
+      		var ht = "<html><head><title>页面</title><meta charset='UTF-8'></head><body>"+text+"</body></html>";
+      		/* $("[name=filedata]").attr("value",ht); */
+      		var filename = $("[name=filename]").val();
+      		//alert(ht+"------"+filename);
+      		if(uuidname==null||uuidname.length==0){
+      			$.ajax({
+	      			type:"post",
+	      			url:"addplant.do",
+	      			data:"filename="+filename+"&filedata="+encodeURIComponent(encodeURIComponent(text)),
+	      			success:function(result){
+	      				uuidname=$.parseJSON(result);
+	      				console.log("success:"+uuidname);
+	      				urlstr = "download.do?filename="+uuidname+".png";
+	      				$("#uop").attr("value",uuidname+".html");
+			      		console.log($("#uop").attr("value"));
+			      		console.log("urlstr:"+urlstr);
+	      				alert("保存成功");
+	      				console.log("mous:"+uuidname);
+						$("#img").attr('src','createQRCode.do?uuidname='+uuidname);
+	      			}
+	      		});
+      		}else{
+      			var url= location.search;
+		  		var theRequest = url.substring(url.lastIndexOf("=")+1);
+      		    console.log("uuidname-theRequest:"+theRequest)
+      			$.ajax({
+	      			type:"post",
+	      			url:"addplant1.do",
+	      			data:"uuidname="+encodeURI(theRequest)+"&filedata="+encodeURIComponent(encodeURIComponent(text)),
+	      			success:function(result){
+	      				alert("修改成功！");      		
+	      			}
+	      		});
+      		    
+      			/* $.ajax({
+	      			type:"post",
+	      			url:"alters.do",
+	      			data:"uuidname="+uuidname,
+	      			success:function(result){
+	      				alert("修改成功");
+	      			}
+	      		}); */
+      		}
+			/*$("#img").mouseover(function(){
+				var uuidname = $("#uop").attr("value");		//保存uuid文件名
+				console.log("sfsfds:"+uuidname);
+			    if(uuidname!=null){
+			    	if(uuidname=="${uuidname_alter}"){
+						var url= location.search;
+						console.log("url:"+url);
+				  		var theRequest = url.substring(url.lastIndexOf("=")+1);
+				  		var uuidname = theRequest.substring(0,theRequest.indexOf("."));
+				  		//var uuidname = theRequest.split("\\.")[0];
+				  		console.log("the:"+theRequest);
+				  		console.log("down-loaduuidname:"+uuidname);
+					}	
+				}else{
+					$("#img").attr('src','createQRCode.do?uuidname='+uuidname);
+				}
+			});*/	
+      	});
+      }
+      
+      function back(){
+      		window.location.href="selectAllFiles.do";
+      }
+    </script>
+</body>
+</html>

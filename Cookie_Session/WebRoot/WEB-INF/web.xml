@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Cookie_Session</display-name>
+ 
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>com.nyist.Cookie.hello</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RemberServlet</servlet-name>
+    <servlet-class>com.nyist.Cookie.Rem.RemberServlet</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/servlet/hello</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RemberServlet</servlet-name>
+    <url-pattern>/servlet/RemberServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

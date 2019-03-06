@@ -1,0 +1,32 @@
+.Right_Index{
+	position: relative;
+	float: right;
+	/* border: solid 1px red;	 */
+	width: 250px;
+	height: 38px;
+	margin:5px auto;
+}
+
+.Right_Index img{
+	position:relative;
+	float:left;
+	text-align: center;
+	margin: 6px 7px;
+}
+
+.Right_Index div{
+	position: relative;
+	float: left;
+	width:31px;
+	height:31px;
+	border-radius: -webkit-calc(20px);
+	border: 1px #ececec solid;
+	margin:3px 5px;
+	margin-top:4px;
+	background-color: #FCFCFC;
+}
+
+.Right_Index div:HOVER{
+	background-color: #ececec;
+	cursor: pointer;
+}

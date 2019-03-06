@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+	
+	<!-- 配置组件扫描 -->
+	<context:component-scan base-package="com.nyist.plantsystem"></context:component-scan>
+	
+	<!-- 配置mvc注解驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 配置视图解析器 -->
+	<!-- 配置sprigmvc视图解析器：解析逻辑试图，前缀+逻辑试图+后缀====/WEB-INF/jsps/xxx.jsp -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 拦截器，拦截没有登陆访问Action的情况 -->
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/AdministratorMain.do"/>
+			<mvc:mapping path="/AdministratorMainTop.do"/>
+			<mvc:mapping path="/AdministratorMainIndex.do"/>
+			<mvc:mapping path="/AddDoctorAccount.do"/>
+			<mvc:mapping path="/AlterDoctorAccountAuthority.do"/>
+			<mvc:mapping path="/AdministratorShowAllDoctorAccount.do"/>
+			<mvc:mapping path="/UpdateDoctorAccount.do"/>
+			<mvc:mapping path="/AddHaoto.do"/>
+			<mvc:mapping path="/SelectAllHaoto.do"/>
+			<mvc:mapping path="/AlterHaoto.do"/>
+			<mvc:mapping path="/DataManagement.do"/>
+			<mvc:mapping path="/AddPatient.do"/>
+			<mvc:mapping path="/AddPatientEmr.do"/>
+			<mvc:mapping path="/ShowAllPatients.do"/>
+			<mvc:mapping path="/UpdatePatients.do"/>
+			<mvc:mapping path="/ShowAllHPatientsEmr.do"/>
+			<mvc:mapping path="/UpdateHPatientEmr.do"/>
+			<mvc:mapping path="/AddInform.do"/>
+			<mvc:mapping path="/ShowAllInforms.do"/>
+			<mvc:mapping path="/UpdateInforms.do"/>
+			<mvc:mapping path="/AddDrugs.do"/>
+			<mvc:mapping path="/ShowDrugs.do"/>
+			<mvc:mapping path="/UpdateDrug.do"/>
+			<mvc:mapping path="/AddTreateRecord.do"/>
+			<mvc:mapping path="/ShowAllTreateRecords.do"/>
+			<mvc:mapping path="/UpdateTreateRecord.do"/>
+			<mvc:mapping path="/AddTreateMoney.do"/>
+			<mvc:mapping path="/PatientUssDrug.do"/>
+			<mvc:mapping path="/ShowPatientUseDrug.do"/>
+			<mvc:mapping path="/ShowTreateMoneys.do"/>
+			拦截没有登陆时，访问Action 程序的情况
+			<mvc:mapping path="/DeleteDoctorAccountAction.do"/>
+			<mvc:mapping path="/SelectDoctorAccountAction.do"/>
+			<mvc:mapping path="/SelectAllDoctorAccountAction.do"/>
+			<mvc:mapping path="/SelectAllHd_idsAction.do"/>
+			<mvc:mapping path="/UpdateDcotorAccountSelectDoctorByIdAction.do"/>
+			<mvc:mapping path="/SelectHDoctorByHd_HaotoidAction.do"/>
+			<mvc:mapping path="/UpdateDoctorAccountAction.do"/>
+			<mvc:mapping path="/SelectAllHaotoidFromHAotoAction.do"/>
+			<mvc:mapping path="/AddHaotoAction.do"/>
+			<mvc:mapping path="/SelectAllHaotoAction.do"/>
+			<mvc:mapping path="/SelectHaotoByIdAction.do"/>
+			<mvc:mapping path="/SelectHaotoByIdsAction.do"/>
+			<mvc:mapping path="/AlterHaotoAction.do"/>
+			<mvc:mapping path="/DeleteHaotoAction.do"/>
+			<mvc:mapping path="/AddPatientAction.do"/>
+			<mvc:mapping path="/SelectAllPatientsActions.do"/>
+			<mvc:mapping path="/SelectPatientByIdAction.do"/>
+			<mvc:mapping path="/SelectPatient1ByIdAction.do"/>
+			<mvc:mapping path="/SelectAllHp_idsAction.do"/>
+			<mvc:mapping path="/SelectHPatientByHp_doctoridAction.do"/>
+			<mvc:mapping path="/UpdateHPatientAction.do"/>
+			<mvc:mapping path="/DeletePatientByIdAction.do"/>
+			<mvc:mapping path="/AddPatientElectronicMedicalRecordAction.do"/>
+			<mvc:mapping path="/DeleteHPatientEmrByPatientidAction.do"/>
+			<mvc:mapping path="/SelectAllHPatientsEmrAction.do"/>
+			<mvc:mapping path="/SelectHPatientEmrByHemr_IdAction.do"/>
+			<mvc:mapping path="/SelectHPatientEmrByHemr_IdsAction.do"/>
+			<mvc:mapping path="/SelectHemrByHemr_patientidAction.do"/>
+			<mvc:mapping path="/UpdateHPatientEmrAction.do"/>
+			<mvc:mapping path="/AddInformsAction.do"/>
+			<mvc:mapping path="/SelectAllByHa_idAction.do"/>
+			<mvc:mapping path="/SelectAllInformsAction.do"/>
+			<mvc:mapping path="/SelectInformByHi_idAction.do"/>
+			<mvc:mapping path="/SelectInformByHi_idsAction.do"/>
+			<mvc:mapping path="/SelectHi_personNameByHi_idAction.do"/>
+			<mvc:mapping path="/UpdateInformByIdAction.do"/>
+			<mvc:mapping path="/DeleteInformAction.do"/>
+			<mvc:mapping path="/AddDrugsAction.do"/>
+			<mvc:mapping path="/SelectAllDrugsAction.do"/>
+			<mvc:mapping path="/SelectHDrugByHdrug_idAction.do"/>
+			<mvc:mapping path="/SelectHDrugByHdrug_idActions.do"/>
+			<mvc:mapping path="/JudgeDrugNameAction.do"/>
+			<mvc:mapping path="/SelectHDrugByNameAction.do"/>
+			<mvc:mapping path="/UpdateDrugAction.do"/>
+			<mvc:mapping path="/DeleteDrugAction.do"/>
+			<mvc:mapping path="/InsertRecordAction.do"/>
+			<mvc:mapping path="/SelectAllTreateRecordsAction.do"/>
+			<mvc:mapping path="/SelectTreateRecordByHtr_patientidAction.do"/>
+			<mvc:mapping path="/SelectTreateRecordByHtr_idAction.do"/>
+			<mvc:mapping path="/SelectTreateRecordsCountByHtr_patientidAction.do"/>
+			<mvc:mapping path="/UpdateTreateRecordAction.do"/>
+			<mvc:mapping path="/DeleteTreateRecordAction.do"/>
+			<mvc:mapping path="/AddTreateMoneyAction.do"/>
+			<mvc:mapping path="/SelectPatientUseDrugAction.do"/>
+			<mvc:mapping path="/DeletePatientUseDrugAction.do"/>
+			<mvc:mapping path="/ShowPatientUseDrugAction.do"/>
+			<mvc:mapping path="/TreatMoneyEndAction.do"/>
+			<mvc:mapping path="/InsertTreatMoneyAction.do"/>
+			<mvc:mapping path="/SelectTreateMoneyAction.do"/>
+			<mvc:mapping path="/SelectHTreateRecordByHtr_patientidAction.do"/>
+			<bean class="com.nyist.Hospital.Interceptor.HospitalInterceptor"/>
+		</mvc:interceptor> 
+	</mvc:interceptors>-->
+</beans>

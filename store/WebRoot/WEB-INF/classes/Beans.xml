@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- ProductDao -->
+	<bean id="productDao" class="com.nyist.dao.impl.ProductDaoImpl"></bean>
+	<!-- CategoryDao -->
+	<bean id="categoryDao" class="com.nyist.dao.impl.CategoryDaoImpl"></bean>
+	<!-- UserDao -->
+	<bean id="userDao" class="com.nyist.dao.impl.UserDaoImpl"></bean>
+	
+	<bean id="orderDao" class="com.nyist.dao.impl.OrderDaoImpl"></bean>
+	<bean id="orderService" class="com.nyist.service.impl.OrderServiceImpl"></bean>
+	
+</beans>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties resource="jdbc.properties">
+		<property name="jdbc.username" value="root"/>
+		<property name="jdbc.password" value="root"/>
+	</properties>
+	<!-- 起别名的方式  -->
+	<typeAliases>
+		<!-- <typeAliase type="com.nyist.mybatis.pojo.User" alias="user"/> -->
+		<!-- 别名包扫描  别名是类的全称  不区分大小写-->
+		<package name="com.nyist.mybatis.pojo"/>
+	</typeAliases>
+	
+
+	<!-- 和spring整合后 environments配置将废除 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc事务管理 -->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}"/>
+				<property name="url" value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 加载映射文件 -->
+	<mappers>
+		<mapper resource="mybatis/User.xml"/>
+		<mapper resource="mybatis/UserMapper.xml"/>
+		
+		<!-- 类扫描器   映射文件扫面
+			接口文件 必须 与映射文件 在同一个文件目录下
+		 -->
+		 <!-- <mapper class="com.nyist.mybatis.Dao1.UserMapper"/> -->
+		 
+		 <!--  映射文件包扫描
+		 	1.接口文件必须与映射文件在同一目录下
+		 	2.接口文件必须映射文件的名称一致
+		  -->
+		  <package name="com.nyist.mybatis.mapper"/>
+	</mappers>
+</configuration>

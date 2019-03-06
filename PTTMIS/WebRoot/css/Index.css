@@ -1,0 +1,157 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+}
+
+.index-div {
+	float: left;
+	position: absolute;
+	width: 239px;
+	height: 850px;
+	padding: 0px;
+	background-color: #ffffff;
+}
+
+.index-div ul {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	position: relative;
+	float: left;
+}
+
+.index-div-li {
+	clear:both;
+	width: 239px;
+	height: 45px;
+	background-color: #ffffff;
+	text-align: center;
+	border-bottom: 1px solid;
+	border-bottom-color: #D1D1D1;
+}
+
+.index-div-li-img {
+	
+	float: left;
+	position: relative;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+
+.index-div-li-a {
+	float: left;
+	position: relative;
+	margin: 12px 0px;
+	margin-left: 4px;
+	text-decoration: none;
+	font-family: '微软雅黑';
+}
+
+.index-div-li-span {
+	float: left;
+	position: relative;
+	margin: 16px 0px;
+	margin-left: 4px;
+	text-decoration: none;
+	font-size: 16px;
+	line-height: 16px;
+}
+
+.index-div-li-data a {
+	font-family: '微软雅黑';
+}
+
+.index-div-li-dataSoutce {
+	width: 239px;
+	height: 45px;
+	background-color: #ffffff;
+	border-bottom: 1px solid;
+	border-bottom-color: #D1D1D1;
+	background-position: left;
+}
+
+.index-div-li-dataSoutce img {
+	clear: both;
+	position: relative;
+	float: left;
+	margin-top: 15px;
+	margin-left: 60px;
+	margin-right: 4px;
+}
+
+.index-div-li-dataSoutce a {
+	position: relative;
+	float: left;
+	text-decoration: none;
+	margin-bottom: 10px;
+	margin-top: 14px;
+}
+
+.img1 {
+	clear: both;
+	position: left;
+	float: left;
+}
+
+p{
+	font-family: '微软雅黑';
+}
+
+.index-div-li-div {
+	float: left;
+	position: relative;
+	width: 239px;
+	height: 287px;
+	background-color: #f3f3f3;
+	font-family: '微软雅黑';
+}
+
+.index-div1 {
+	float: left;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 17px;
+	width: 185px;
+	height: 130px;
+	border: solid 1px #ffffff;
+	background-color: #ffffff;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.index-div1 img {
+	margin-top: 10px;
+}
+
+.index-div2 {
+	float: left;
+	position: relative;
+	margin: 0px 17px;
+	width: 185px;
+	height: 130px;
+	border: solid red;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	border: solid 1px #ffffff;
+	background-color: #ffffff;
+}
+
+.index-div2 span {
+	position: relative;
+	float: left;
+	margin-top: 8px;
+	margin-left: 7px;
+}
+
+.index-div2 img {
+	clear: both;
+	position: relative;
+	float: left;
+	margin-top: 10px;
+}
+
+.shouye{
+	color:block;
+	font-family: 微软雅黑;
+}

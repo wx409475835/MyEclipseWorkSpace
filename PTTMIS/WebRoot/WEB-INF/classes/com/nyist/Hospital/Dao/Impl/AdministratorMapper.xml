@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nyist.Hospital.Dao.AdministratorMapper">
+	<!-- 管理员登陆表 -->
+	<select id="AdministratorLogin" resultType="java.lang.String">
+		select ha_id from hospital_administrator where ha_username=#{ha_username} and ha_account=#{ha_account} and ha_password=#{ha_password}  
+	</select>
+	
+	<!-- 判断用户名是否存在 -->
+	<!-- AdministratorLoginJudgeByName -->
+	<select id="AdministratorLoginJudgeByName" parameterType="java.lang.String" resultType="java.lang.String">
+		select ha_id from hospital_administrator where ha_username=#{ha_username}
+	</select>
+	
+	<!-- 通过ha_id 查询管理员信息hospital_administrator -->
+	<select id="SelectAllByHa_id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_administrator">
+		select * from hospital_administrator
+	</select>
+	
+	<!-- 添加医生用户 -->
+	<insert id="AddDoctorAccount" parameterType="com.nyist.Hospital.Model.hospital_doctor">
+		insert into hospital_doctor(hd_name,hd_age,hd_sex,hd_speciality,hd_pt,hd_ri,hd_haotoid,hd_mobile) values(#{hd_name},#{hd_age},#{hd_sex},#{hd_speciality},#{hd_pt},#{hd_ri},#{hd_haotoid},#{hd_mobile})
+	</insert>
+	
+	<!-- 通过名字获得ID(在hospital_Doctor) -->
+	<select id="SelectIdByNameInHDoctor" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select hd_id from hospital_doctor where hd_name=#{hd_name}
+	</select>
+	
+	<!-- 将信息 插入到医生与权限对应表 -->
+	<insert id="InsetToHDoctorAuthority" parameterType="com.nyist.Hospital.Model.hospital_doctor_authority">
+		insert into hospital_doctor_authority values(#{hda_id},#{hda_aid},#{hda_authorityid})
+	</insert>
+	
+	<!-- 通过给定的权限名 查找权限ID  -->
+	<select id="SelectIdByNameInHAuthority" parameterType="java.lang.String" resultType="java.lang.String">
+		select hau_id from hospital_authority where hau_name = #{hau_name}
+	</select>
+	
+	<!-- 通过给定医生的姓名查找医生ID -->
+	<select id="SelectDoctorIdByDoctorNameInHDoctor" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select hd_id from hospital_doctor where hd_name = #{hd_name}
+	</select>
+	
+	<!-- 通过  科室id  查询医生信息 -->
+	<select id="SelectHDoctorByHd_Haotoid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select hd_id from hospital_doctor where hd_haotoid = #{hd_haotoid}
+	</select>
+	
+	<!-- 删除医生用户 -->
+	<delete id="DeleteDoctorAccount" parameterType="java.lang.Integer">
+		delete from hospital_doctor where hd_id = #{hd_id}
+	</delete>
+	
+	<!-- 删除权限表中的医生与权限对应的记录 -->
+	<delete id="DeleteHDAuthorityRecord" parameterType="java.lang.Integer">
+		delete from hospital_doctor_authority where hda_id = #{hda_id}
+	</delete>
+	
+	<!-- 删除医生登陆账号 -->
+	<delete id="DeleteHDoctorLogin" parameterType="java.lang.Integer">
+		delete from hospital_login where hl_doctorid = #{hl_doctorid}
+	</delete>
+	
+	<!-- 查询医生信息 返回hospital_doctor -->
+	<select id="SelectDoctorAccount" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select hd_id,hd_name,hd_age,hd_sex,hd_speciality,hd_pt,hd_ri,hd_haotoid,hd_mobile
+		from hospital_doctor where hd_id = #{hd_ id}
+	</select>
+	
+	<!-- 查询医生用户信息(返回List<hospital_doctor>) -->
+	<select id="SelectDoctorAccounts" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select hd_id,hd_name,hd_age,hd_sex,hd_speciality,hd_pt,hd_ri,hd_haotoid,hd_mobile
+		from hospital_doctor where hd_id = #{hd_ id}
+	</select>
+	
+	<!-- 查询所有医生ID -->
+	<select id="SelectAllHd_ids" resultType="java.lang.Integer">
+		select hd_id from hospital_doctor
+	</select>
+	
+	<!-- 更新医生用户信息 -->
+	<update id="UpdateDoctorAccount" parameterType="com.nyist.Hospital.Model.hospital_doctor">
+		update hospital_doctor set hd_id=#{hd_id},hd_name = #{hd_name},hd_age = #{hd_age},hd_sex = #{hd_sex},hd_speciality = #{hd_speciality},hd_pt = #{hd_pt},hd_ri = #{hd_ri},hd_haotoid = #{hd_haotoid},hd_mobile = #{hd_mobile}
+		where hd_id = #{hd_id}
+	</update>
+	
+	<!-- 查询科室表中的所有科室ID(haoto_id) -->
+	<select id="SelectAllHaotoidFromHAoto" resultType="java.lang.Integer">
+		select haoto_id from hospital_aoto
+	</select>
+	
+	<!-- 查询所以医生用户 -->
+	<select id="SelectAllDoctorAccount" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select hd_id,hd_name,hd_age,hd_sex,hd_speciality,hd_pt,hd_haotoid,hd_mobile,hd_ri from hospital_doctor
+	</select>
+	
+	<!-- 科室部门管理 -->
+	<!-- 添加科室部门 -->
+	<insert id="AddHaoto" parameterType="com.nyist.Hospital.Model.hospital_aoto">
+		insert into hospital_aoto(haoto_name,haoto_person,haoto_decribe) values(#{haoto_name},#{haoto_person},#{haoto_decribe})
+	</insert>
+	
+	<!-- 查询所有科室信息 -->
+	<select id="SelectAllHaoto" resultType="com.nyist.Hospital.Model.hospital_aoto">
+		select * from hospital_aoto
+	</select>
+	
+	<!-- 查询所有科室ID -->
+	<select id="SelectAllHaoto_ids" resultType="java.lang.Integer">
+		select haoto_id from hospital_aoto
+	</select>
+	
+	<!-- 通过ID查询 科室信息 -->
+	<select id="SelectHaotoById" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_aoto">
+		select haoto_id,haoto_name,haoto_person,haoto_decribe from hospital_aoto where haoto_id = #{haoto_id}
+	</select>
+	
+	<!-- 通过ID查询科室信息(返回List<hospital_aoto>) -->
+	<select id="SelectHaotoByIds" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_aoto">
+		select haoto_id,haoto_name,haoto_person,haoto_decribe from hospital_aoto where haoto_id = #{haoto_id}
+	</select>
+	
+	<!-- 更新科室信息 -->
+	<update id="AlterHaoto" parameterType="com.nyist.Hospital.Model.hospital_aoto">
+		update hospital_aoto set haoto_id = #{haoto_id},haoto_name = #{haoto_name},haoto_person = #{haoto_person},haoto_decribe = #{haoto_decribe}
+		where haoto_id = #{haoto_id}
+	</update>
+	
+	<!-- 通过科室ID删除科室信息 -->
+	<delete id="DeleteHaoto" parameterType="java.lang.Integer">
+		delete from hospital_aoto where haoto_id = #{haoto_id}
+	</delete>
+	
+	<!-- 数据字典管理 -->
+	<!-- 添加病人信息(hospital_patient) -->
+	<insert id="AddPatient" parameterType="com.nyist.Hospital.Model.hospital_patient">
+		insert into hospital_patient(hp_doctorid,hp_name,hp_sex,hp_birthday,hp_tath,hp_tsd,hp_stat,hp_marry)
+		values(#{hp_doctorid},#{hp_name},#{hp_sex},#{hp_birthday},#{hp_tath},#{hp_tsd},#{hp_stat},#{hp_marry})
+	</insert>
+	
+	<!-- 通过ID查询病人信息(返回hospital_patient) -->
+	<select id="SelectPatientById" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_patient">
+		select hp_id,hp_doctorid,hp_name,hp_sex,hp_birthday,hp_tath,hp_tsd,hp_mrid,hp_stat,hp_marry
+		from hospital_patient
+		where hp_id = #{hp_id}
+	</select>
+	
+	<!-- 通过医生姓名获得医生ID(hospital_patient) -->
+	<select id="SelectHPatientIDByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select hp_id from hospital_patient where hp_name = #{hp_name}
+	</select>
+	
+	<!-- 添加电子病历(hospital_emr) -->
+	<insert id="AddPatientElectronicMedicalRecord" parameterType="com.nyist.Hospital.Model.hospital_emr">
+		insert into hospital_emr(hemr_patientid,hemr_doctorid,hemr_diagnosis,hemr_symptom,hemr_method,hemr_starttime,hemr_treatisend,hemr_endtime)
+		values(#{hemr_patientid},#{hemr_doctorid},#{hemr_diagnosis},#{hemr_symptom},#{hemr_method},#{hemr_starttime},#{hemr_treatisend},#{hemr_endtime})
+	</insert>
+	
+	<!-- 查询电子病历信息 -->
+	<!-- 通过病人ID查询病历信息 -->
+	<select id="SelectHemr_idByHemr_patientid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select hemr_id from hospital_emr where hemr_patientid = #{hemr_patientid}
+	</select>
+	
+	<!-- 通过病人Id 插入 病人信息  修改hp_mrid -->
+	<update id="UpdateHemr_idByHp_patientid">
+		update hospital_patient set hp_mrid = #{hemr_id} 
+		where hp_id = #{hemr_patientid}
+	</update>
+	
+	<resultMap type="com.nyist.Hospital.Model.hospital_patient" id="AllPatients">
+		<id column="hp_id" property="hp_id"/>
+		<result column="hp_doctorid" property="hp_doctorid"/>
+		<result column="hp_name" property="hp_name"/>
+		<result column="hp_sex" property="hp_sex"/>
+		<result column="hp_birthday" property="hp_birthday"/>
+		<result column="hp_tath" property="hp_tath"/>
+		<result column="hp_tsd" property="hp_tsd"/>
+		<result column="hp_mrid" property="hp_mrid"/>
+		<result column="hp_stat" property="hp_stat"/>
+		<result column="hp_marry" property="hp_marry"/>
+	</resultMap>
+	
+	<!-- 查询所有病人信息 -->
+	<select id="SelectAllPatients" resultMap="AllPatients">
+		select * from hospital_patient
+	</select>
+	
+	<!-- 查询病人的所有ID信息 -->
+	<select id="SelectAllHp_ids" resultType="java.lang.Integer">
+		select hp_id from hospital_patient
+	</select>
+	
+	<!-- 通过 医生id(hp_doctorid 查询 hospital_patient)病人记录 -->
+	<select id="SelectHPatientByHp_doctorid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_patient">
+		select * from hospital_patient where hp_doctorid = #{hp_doctorid}
+	</select>
+	
+	<!-- 修改病人信息 -->
+	<update id="UpdateHPatient" parameterType="com.nyist.Hospital.Model.hospital_patient">
+		update hospital_patient set hp_doctorid = #{hp_doctorid},hp_name = #{hp_name},hp_sex = #{hp_sex},hp_birthday = #{hp_birthday},hp_tath = #{hp_tath},hp_tsd = #{hp_tsd},hp_mrid = #{hp_mrid},hp_stat = #{hp_stat},hp_marry = #{hp_marry}
+		where hp_id = #{hp_id}
+	</update>
+	
+	<!-- 通过 ID 删除病人 信息 -->
+	<delete id="DeletePatientById" parameterType="java.lang.Integer">
+		delete from hospital_patient where hp_id = #{hp_id}
+	</delete>	
+	
+	<!-- 修改病历信息 -->
+	<update id="UpdateHPatientEmr" parameterType="com.nyist.Hospital.Model.hospital_emr">
+		update hospital_emr set hemr_id = #{hemr_id},hemr_patientid = #{hemr_patientid},hemr_doctorid = #{hemr_doctorid},hemr_diagnosis = #{hemr_diagnosis},hemr_symptom = #{hemr_symptom},hemr_method = #{hemr_method},hemr_starttime = #{hemr_starttime},hemr_treatisend = #{hemr_treatisend},hemr_endtime = #{hemr_endtime}
+		where hemr_patientid = #{hemr_patientid}
+	</update>
+	
+	<!-- 更新病历  通过hp_id hp_doctorid hp_tsd hp_tath -->
+	<update id="UpdateHPatientEmrByIdNameTT">
+		update hospital_emr set hemr_doctorid = #{hp_doctorid},hemr_symptom = #{hp_tsd},hemr_starttime = #{hp_tath}
+		where hemr_patientid = #{hp_id}
+	</update>
+	
+	<!-- 通过病人ID hemr_patientid 删除 病历信息 -->
+	<delete id="DeleteHPatientEmrByPatientid" parameterType="java.lang.Integer">
+		delete from hospital_emr where hemr_patientid = #{hemr_patientid }
+	</delete>
+	
+	<!-- 查询所有病历信息 -->
+	<select id="SelectAllHPatientsEmr" resultType="com.nyist.Hospital.Model.hospital_emr">
+		select * from hospital_emr
+	</select>
+	
+	<!-- 通过 病历ID 查找病历信息 -->
+	<select id="SelectHPatientEmrByHemr_Id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_emr">
+		select * from hospital_emr where hemr_id = #{hemr_id}
+	</select>
+	
+	<!-- 通过 病人ID  查询病历信息 -->
+	<select id="SelectHemrByHemr_patientid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_emr">
+		select * from hospital_emr where hemr_patientid = #{hemr_patientid}
+	</select>
+	
+	<!--  -->
+	<update id="UpdateHPatientByHemr_diagnosisAndHemr_starttime">
+		update hospital_patient set hp_tsd = #{hemr_diagnosis},hp_tath = #{hemr_starttime}
+		where hp_id = #{hemr_patientid}
+	</update>
+	
+	<!-- 通知管理 -->
+	<!-- 管理员添加通知 -->
+	<insert id="AddInforms" parameterType="com.nyist.Hospital.Model.hospital_inform">
+		insert into hospital_inform(hi_personid,hi_tet,hi_content) values(#{hi_personid},#{hi_tet},#{hi_content})
+	</insert>
+	
+	<!-- 查询所有通知 -->
+	<select id="SelectAllInforms" resultType="com.nyist.Hospital.Model.hospital_inform">
+		select * from hospital_inform
+	</select>
+	
+	<!-- 通过通知ID查询所有的通知 -->
+	<select id="SelectInformByHi_id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_inform">
+		select * from hospital_inform where hi_id = #{hi_id}
+	</select>
+	
+	<!-- 通过 通知id 查找 通知人姓名 -->
+	<select id="SelectHi_personNameByHi_id" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select ha_username from hospital_administrator where ha_id = #{ha_id}
+	</select>
+	
+	<!-- 更新通知 -->
+	<update id="UpdateInformById" parameterType="com.nyist.Hospital.Model.hospital_inform">
+		update hospital_inform set hi_tet = #{hi_tet},hi_content = #{hi_content}
+		where hi_id = #{hi_id} and hi_personid = #{hi_personid}
+	</update>
+	
+	<!-- 删除通知 -->
+	<delete id="DeleteInform" parameterType="java.lang.Integer">
+		delete from hospital_inform where hi_id = #{hi_id}
+	</delete>
+	
+	<!-- 药品管理 -->
+	<!-- 添加药品消息 -->
+	<insert id="AddDrugs" parameterType="com.nyist.Hospital.Model.hospital_drug">
+		insert into hospital_drug(hdrug_name,hdrug_price,hdrug_birthday,hdrug_type,hdrug_introduce)
+		values(#{hdrug_name},#{hdrug_price},#{hdrug_birthday},#{hdrug_type},#{hdrug_introduce})
+	</insert>
+	
+	<!-- 查询所有药品信息 -->
+	<select id="SelectAllDrugs" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug
+	</select>
+	
+	<!-- 通过药品名称查询  药品信息 -->
+	<select id="SelectHDrugByName" parameterType="java.lang.String" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug where hdrug_name = #{hdrug_name}
+	</select>
+	
+	<!-- 通过ID 查询 药品信息 -->
+	<select id="SelectHDrugByHdrug_id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug where hdrug_id = #{hdrug_id}
+	</select>
+	
+	<!-- 查看药品名称是否存在 -->
+	<select id="JudgeDrugName" parameterType="java.lang.String" resultType="java.lang.String">
+		select hdrug_id from hospital_drug where hdrug_name = #{hdrug_name}
+	</select>
+	
+	<!-- 更新药品信息 -->
+	<update id="UpdateDrug" parameterType="com.nyist.Hospital.Model.hospital_drug">
+		update hospital_drug set hdrug_name=#{hdrug_name},hdrug_price=#{hdrug_price},hdrug_birthday=#{hdrug_birthday},hdrug_type=#{hdrug_type},hdrug_introduce=#{hdrug_introduce}
+		where hdrug_id=#{hdrug_id}
+	</update>
+	
+	<!-- 通过ID删除药品信息 -->
+	<delete id="DeleteDrug" parameterType="java.lang.Integer">
+		delete from hospital_drug where hdrug_id = #{hdrug_id}
+	</delete>
+	
+	<!-- 采集病人信息后,创建病历,生成诊断记录 -->
+	<!-- 添加诊断记录 -->
+	<insert id="InsertRecord" parameterType="com.nyist.Hospital.Model.hospital_treaterecord">
+		insert into hospital_treaterecord(htr_doctorid,htr_patientid,htr_aotoid,htr_treatetimes,htr_treatetime,htr_treatecase)
+		values(#{htr_doctorid},#{htr_patientid},#{htr_aotoid},#{htr_treatetimes},#{htr_treatetime},#{htr_treatecase})
+	</insert>
+	
+	<!-- 通过 病人ID 查询诊断记录 -->
+	<select id="SelectTreateRecordByHtr_patientid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_treaterecord">
+		select * from hospital_treaterecord where htr_patientid = #{htr_patientid} 
+	</select>
+	
+	<!-- 查询所有得诊断记录信息 -->
+	<select id="SelectAllTreateRecords" resultType="com.nyist.Hospital.Model.hospital_treaterecord">
+		select * from hospital_treaterecord
+	</select>
+	
+	<!-- 通过病人ID查询诊断次数 -->
+	<select id="SelectTreateRecordsCountByHtr_patientid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from hospital_treaterecord where htr_patientid = #{htr_patientid}
+	</select>
+	
+	<!-- 更新诊断信息 -->
+	<update id="UpdateTreateRecord" parameterType="com.nyist.Hospital.Model.hospital_treaterecord">
+		update hospital_treaterecord set htr_patientid = #{htr_patientid},htr_doctorid = #{htr_doctorid},htr_aotoid = #{htr_aotoid},htr_treatetime = #{htr_treatetime},htr_treatecase = #{htr_treatecase}
+		where htr_id = #{htr_id}
+	</update>
+	
+	<!-- 通过  诊断记录 ID  查询诊断记录 -->
+	<select id="SelectTreateRecordByHtr_id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_treaterecord">
+		select * from hospital_treaterecord where htr_id = #{htr_id}
+	</select>
+	
+	<!-- 删除诊断记录 -->
+	<delete id="DeleteTreateRecord" parameterType="java.lang.Integer">
+		delete from hospital_treaterecord where htr_id = #{htr_id}
+	</delete>
+	
+	<!-- 通过病人ID删除诊断记录ID -->
+	<delete id="DeleteTreateRecordByHtr_patientid" parameterType="java.lang.Integer">
+		delete from hospital_treaterecord where htr_patientid = #{htr_patientid}
+	</delete>
+	
+	<!-- 治疗费用管理 -->
+	<!-- 添加治疗费用 -->
+	<insert id="AddTreateMoney" parameterType="com.nyist.Hospital.Model.hospital_treatemoney">
+		insert into hospital_treatemoney(htm_name,htm_patientid,htm_ispaymoney,htm_treatmoneytype,htm_moneyconsum,htm_consumtime)
+		values(#{htm_name},#{htm_patientid},#{htm_ispaymoney},#{htm_treatmoneytype},#{htm_moneyconsum},#{htm_consumtime})
+	</insert>
+	
+	<!-- 病人用药信息管理 -->
+	<insert id="InsertPatientUseDrug" parameterType="com.nyist.Hospital.Model.hospital_patientusedrug">
+		insert into hospital_patientusedrug(hpt_patientid,hpt_drugid) values(#{hpt_patientid},#{hpt_drugid})
+	</insert>
+	
+	<!-- 查询病人用药信息 -->
+	<select id="SelectPatientUseDrug" resultType="java.lang.Integer">
+		select hpt_drugid from hospital_patientusedrug where hpt_patientid = #{hpt_patientid} and hpt_id = #{hpt_id}
+	</select>
+	
+	<!-- 通过 药品ID  查询药品信息 -->
+	<select id="SelectHDrugsByHdrug_id" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug where hdrug_id = #{hdrug_id}
+	</select>
+	
+	<!-- 通过  hpt_patientid 和 hpt_drugid 查询   病人用药信息 ID  hpt_id -->
+	<select id="SelectPatientUseDrugByHpt_patientidAndHpt_drugid" resultType="java.lang.String">
+		select hpt_id from hospital_patientusedrug where hpt_patientid = #{hpt_patientid} and hpt_drugid = #{hpt_drugid}
+	</select>
+	
+	<!-- 通过病人ID hpt_patientid 查询 病人用药信息 -->
+	<select id="SelectHPUseDrugByHpt_patientid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_patientusedrug">
+		select * from hospital_patientusedrug where hpt_patientid = #{hpt_patientid}
+	</select>
+	
+	<!-- 修改  病人用药信息 的数量  实现自加1 -->
+	<update id="AlterPatientUseDrugCount" parameterType="java.lang.Integer">
+		update hospital_patientusedrug set hpt_count=hpt_count+1 where hpt_id = #{hpt_id}
+	</update>
+	
+	<!-- 只通过病人ID 查找病人用药信息 -->
+	<select id="SelectPatientUseDrug1" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select hpt_drugid from hospital_patientusedrug where hpt_patientid = #{hpt_patientid} 
+	</select>
+	
+	<!-- 通过病人ID 和 药品ID  查找 药品数量 -->
+	<select id="SelectDrugCountByHpt_patientidAndHpt_drugid" resultType="java.lang.Integer">
+		select hpt_count from hospital_patientusedrug where hpt_patientid = #{hpt_patientid} and hpt_drugid = #{hpt_drugid}
+	</select>
+	
+	<!-- 药品数量 自减1 -->
+	<update id="UpdateDrugCount">
+		update hospital_patientusedrug set hpt_count = hpt_count-1 where hpt_patientid = #{hpt_patientid} and hpt_drugid = #{hpt_drugid}
+	</update>
+	
+	<!-- 删除用药信息 -->
+	<delete id="DeletePatientUseDrug" parameterType="java.lang.Integer">
+		delete from hospital_patientusedrug where hpt_id = #{hpt_id}
+	</delete>
+	
+	<!-- 通过 病人ID  删除病人用药信息 -->
+	<delete id="DeletePatientUseDrugByHpt_patientid" parameterType="java.lang.Integer">
+		delete from hospital_patientusedrug where hpt_patientid = #{hpt_patientid}
+	</delete>
+	
+	<!-- 通过 病人ID hpt_patientid 和 药品 ID hpt_drugid 查询 -->
+	<select id="DrugCounts" resultType="java.lang.Integer">
+		select hpt_count from hospital_patientusedrug where hpt_patientid = #{hpt_patientid} and hpt_drugid = #{hpt_drugid}
+	</select>
+	
+	<!-- 添加结算记录 -->
+	<insert id="InsertTreatMoney" parameterType="com.nyist.Hospital.Model.hospital_treatemoney">
+		insert into hospital_treatemoney(htm_patientid,htm_name,htm_ispaymoney,htm_treatmoneytype,htm_moneyconsum,htm_consumtime) 
+		values(#{htm_patientid},#{htm_name},#{htm_ispaymoney},#{htm_treatmoneytype},#{htm_moneyconsum},#{htm_consumtime})
+	</insert>
+	
+	<!-- 查询所有的结算记录 -->
+	<select id="SelectTreateMoney" resultType="com.nyist.Hospital.Model.hospital_treatemoney">
+		select * from hospital_treatemoney
+	</select>
+	
+	<!-- 通过  病人 id 查询诊断记录 -->
+	<select id="SelectHTreatemoneyByHt_patientid" parameterType="java.lang.Integer" resultType="com.nyist.Hospital.Model.hospital_treatemoney">
+		select * from hospital_treatemoney where htm_patientid = #{htm_patientid}
+	</select>
+	
+	<!-- 通过 姓名 查询 医生信息 -->
+	<select id="SelectDoctorByHd_name" parameterType="java.lang.String" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select * from hospital_doctor where hd_name like CONCAT('%', #{hd_name}, '%')
+	</select>
+	
+	<!-- 通过科室名称查询科室信息 -->
+	<select id="SelectHaotoByName" parameterType="java.lang.String" resultType="com.nyist.Hospital.Model.hospital_aoto">
+		select * from hospital_aoto where haoto_name like CONCAT('%',#{haoto_name},'%')
+	</select>
+	
+	<!-- 通过病人姓名 查询 病人信息 -->
+	<select id="SelectHPatientsByHp_name" parameterType="java.lang.String" resultType="com.nyist.Hospital.Model.hospital_patient">
+		select * from hospital_patient where hp_name like CONCAT('%',#{hp_name},'%')
+	</select>
+	
+	<!-- 通过 药瓶名称查询 药品信息 -->
+	<select id="SelectDrugByHdrug_name" parameterType="java.lang.String" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug where hdrug_name like CONCAT('%',#{hdrug_name},'%')
+	</select>
+	
+	<!-- 删除结算记录 -->
+	<delete id="DeleteTreateMoney" parameterType="java.lang.Integer">
+		delete from hospital_treatemoney where htm_id = #{htm_id}
+	</delete>
+	
+	<!-- ================================================== 分页技术 ================================================ -->
+	
+	<!-- 分页技术 -->
+	<select id="QueryLimitListHospital_Doctor" resultType="com.nyist.Hospital.Model.hospital_doctor">
+		select * from hospital_doctor limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_doctor 表 总记录数 -->
+	<select id="CountHospital_Doctor" resultType="java.lang.Integer">
+		select count(*) from hospital_doctor
+	</select>
+	
+	<!-- 查询科室 -->
+	<select id="QueryLimitListHospital_aoto" resultType="com.nyist.Hospital.Model.hospital_aoto">
+		select * from hospital_aoto limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_aoto 表 总记录数 -->
+	<select id="CountHospital_aoto" resultType="java.lang.Integer">
+		select count(*) from hospital_aoto
+	</select>
+	
+	<!-- 查询病人 -->
+	<select id="QueryLimitListHospital_patient" resultType="com.nyist.Hospital.Model.hospital_patient">
+		select * from hospital_patient limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_aoto 表 总记录数 -->
+	<select id="CountHospital_patient" resultType="java.lang.Integer">
+		select count(*) from hospital_patient
+	</select>
+	
+	<!-- 查询病例 -->
+	<select id="QueryLimitListHospital_emr" resultType="com.nyist.Hospital.Model.hospital_emr">
+		select * from hospital_emr limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_aoto 表 总记录数 -->
+	<select id="CountHospital_emr" resultType="java.lang.Integer">
+		select count(*) from hospital_emr
+	</select>
+	
+	<!-- 查询药品 -->
+	<select id="QueryLimitListHospital_drug" resultType="com.nyist.Hospital.Model.hospital_drug">
+		select * from hospital_drug limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_aoto 表 总记录数 -->
+	<select id="CountHospital_drug" resultType="java.lang.Integer">
+		select count(*) from hospital_drug
+	</select>
+	
+	<!-- 查询诊断记录 -->
+	<select id="QueryLimitListHospital_treaterecord" resultType="com.nyist.Hospital.Model.hospital_treaterecord">
+		select * from hospital_treaterecord limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_aoto 表 总记录数 -->
+	<select id="CountHospital_treaterecord" resultType="java.lang.Integer">
+		select count(*) from hospital_treaterecord
+	</select>
+	
+	<!-- 查询通知 -->
+	<select id="QueryLimitListHospital_inform" resultType="com.nyist.Hospital.Model.hospital_inform">
+		select * from hospital_inform limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_inform 表 总记录数 -->
+	<select id="CountHospital_inform" resultType="java.lang.Integer">
+		select count(*) from hospital_inform
+	</select>
+	
+	<!-- 查询结算记录 -->
+	<select id="QueryLimitListHospital_treatemoney" resultType="com.nyist.Hospital.Model.hospital_treatemoney">
+		select * from hospital_treatemoney limit #{startIndex},#{pagesize}
+	</select>
+	
+	<!-- 查询Hospital_inform 表 总记录数 -->
+	<select id="CountHospital_treatemoney" resultType="java.lang.Integer">
+		select count(*) from hospital_treatemoney
+	</select>
+</mapper>

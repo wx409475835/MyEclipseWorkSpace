@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="nyist.net.Library.Dao.LibraryMapper">
+	<!-- InsertBookInformation -->
+	<insert id="InsertBookInformation" parameterType="nyist.net.Library.entity.book">
+		<selectKey keyProperty="book_id" resultType="java.lang.String" order="BEFORE">
+			select book_seq.nextval from dual
+		</selectKey>
+		insert into book(book_id,book_name,book_type,book_price,book_count,book_add) 
+		values(#{book_id},#{book_name},#{book_type},#{book_price},#{book_count},#{book_add})
+	</insert>	
+	
+	<!-- DeleteBookInformation -->
+	<delete id="DeleteBookInformation" parameterType="java.lang.String">
+		delete from book where book_id=#{book_id}
+	</delete>
+	
+	<!-- QueryAllBookInformation -->
+	<select id="QueryAllBookInformation" resultType="nyist.net.Library.entity.book">
+		select * from book 
+	</select>
+	
+	<!-- Register -->
+	<insert id="Register" parameterType="nyist.net.Library.entity.login_readperson">
+		<selectKey keyProperty="person_id" resultType="java.lang.String" order="BEFORE">
+			select person_seq.currval from dual
+		</selectKey>
+		insert into login_readperson(username,pw,person_id,ident) values(#{username},#{pw},#{person_id},#{ident})
+	</insert>
+	
+	<!-- InsertBookPersonInformation -->
+	<insert id="InsertBookPersonInformation" parameterType="nyist.net.Library.entity.bookperson">
+		<selectKey keyProperty="person_id" resultType="java.lang.String" order="BEFORE">
+			select person_seq.nextval from dual
+		</selectKey>
+		insert into bookperson(person_id,person_name,person_age,person_sex,person_we,person_com,person_mobile,person_add)
+		values(#{person_id},#{person_name},#{person_age},#{person_sex},#{person_we},#{person_com},#{person_mobile},#{person_add})
+	</insert>
+	
+	<!-- AlterBookPersonInformations -->
+	<update id="AlterBookPersonInformations" parameterType="nyist.net.Library.entity.bookperson">
+		update bookperson set person_name=#{person_name},person_age=#{person_age},person_sex=#{person_sex},person_we=#{person_we},person_com=#{person_com},person_mobile=#{person_mobile},person_add=#{person_add}
+		where person_id=#{person_id}
+	</update>
+
+	<!-- PersonRegister -->
+	<insert id="PersonRegister" parameterType="nyist.net.Library.entity.bookperson">
+		<selectKey keyProperty="person_id" resultType="java.lang.String" order="BEFORE">
+			select person_seq.nextval from dual
+		</selectKey>
+		insert into bookperson(person_id,person_name,person_age,person_sex,person_we,person_com,person_mobile,person_add)
+		values(#{person_id},#{person_name},#{person_age},#{person_sex},#{person_we},#{person_com},#{person_mobile},#{person_add})
+	</insert>
+	
+	<!-- Login -->
+	<select id="Login" resultType="java.lang.String">
+		select person_id from login_readperson where username=#{username} and pw=#{pw} and ident=#{ident}
+	</select>
+	
+	<!-- QueryBookType -->
+	<select id="QueryBookType" parameterType="java.lang.String" resultType="nyist.net.Library.entity.book">
+		select * from book where book_type=#{book_type}
+	</select>
+	
+	<!-- SelectMineInformation -->
+	<select id="SelectMineInformation" parameterType="java.lang.String" resultType="nyist.net.Library.entity.bookperson">
+		select person_id,person_name,person_age,person_sex,person_we,person_com,person_mobile,person_add
+		from bookperson where person_id=#{person_id}
+	</select>
+	
+	<!-- BrrowBooks -->
+	<!-- 借阅图书 -->
+	<update id="BrrowBooks" parameterType="java.lang.String">
+		update book set book_count=book_count-1 where book_id=#{book_id}
+	</update>
+	
+	<!-- BrrowBooksInformation -->
+	<!-- 借阅记录 -->
+	<update id="BrrowBooksInformation">
+		update personread set book_count=book_count+1 where book_id=#{book_id} and person_id=#{person_id}
+	</update>
+	
+	<!-- SelectBookAsId -->
+	<select id="SelectBookAsId" parameterType="java.lang.String" resultType="nyist.net.Library.entity.book">
+		select * from book where book_id=#{book_id}
+	</select>
+	
+	<!-- SelectBookAsId1 -->
+	<select id="SelectBookAsId1" parameterType="java.lang.String" resultType="nyist.net.Library.entity.book">
+		select * from book where book_id=#{book_id}
+	</select>
+	
+	<resultMap type="nyist.net.Library.entity.personread" id="read">
+		<id column="read_id" property="read_id"/>
+		<result column="book_id" property="book_id"/>
+		<result column="book_name" property="book_name"/>
+		<result column="book_type" property="book_type"/>
+		<result column="book_count" property="book_count"/>
+		<result column="book_add" property="book_add"/>
+	</resultMap>
+	
+	<!-- PersonBrrowRecord -->
+	<select id="PersonBrrowRecord" parameterType="java.lang.String" resultMap="read">
+		select read_id,book_id,book_name,book_type,book_count,book_add from personread where person_id=#{person_id}
+	</select>
+	
+	<!-- InsertPersonBrrowInformation -->
+	<insert id="InsertPersonBrrowInformation" parameterType="nyist.net.Library.entity.personread">
+		<selectKey keyProperty="read_id" resultType="java.lang.String" order="BEFORE">
+			select read_seq.nextval from dual
+		</selectKey>
+		insert into personread(read_id,person_id,book_id,book_name,book_type,book_count,book_add)
+		values(#{read_id},#{person_id},#{book_id},#{book_name},#{book_type},#{book_count},#{book_add})
+	</insert>
+	
+	<!-- DeleteMineInformation -->
+	<delete id="DeleteMineInformation" parameterType="java.lang.String">
+		delete from bookperson where person_id=#{person_id}
+	</delete>
+	
+	<!-- AlterPassword -->
+	<update id="AlterPassword" parameterType="nyist.net.Library.entity.login_readperson">
+		update login_readperson set username=#{username},pw=#{pw} where person_id=#{person_id}
+	</update>
+	
+	<!-- DeleteBrrowInformation -->
+	<delete id="DeleteBrrowInformation" parameterType="java.lang.String">
+		delete from personread where book_id=#{book_id} 
+	</delete>
+	
+	<!-- SelectPersonOneBrrowInf -->
+	<select id="SelectPersonOneBrrowInf" resultType="nyist.net.Library.entity.personread">
+		select * from personread where book_id=#{book_id} and person_id=#{person_id}
+	</select>
+	
+	<!-- SelectPersonOneBrrowInf1 -->
+	<select id="SelectPersonOneBrrowInf1" parameterType="java.lang.String" resultType="nyist.net.Library.entity.personread">
+		select * from personread where book_id=#{book_id}
+	</select>
+	
+	<!-- ReturnBookToLibrary -->
+	<update id="ReturnBookToLibrary">
+		update book set book_count=book_count+#{book_count} where book_id=#{book_id}
+	</update>
+	
+	<!-- updateBooksInformation -->
+	<update id="updateBooksInformation" parameterType="nyist.net.Library.entity.book">
+		update book set book_name=#{book_name},book_type=#{book_type},book_price=#{book_price},book_count=#{book_count},book_add=#{book_add}
+		where book_id=#{book_id}
+	</update>
+	
+	<resultMap type="nyist.net.Library.entity.login_readperson" id="SelectUser">
+		<id column="person_id" property="person_id"/>
+		<result column="username" property="username"/>
+		<result column="ident" property="ident"/>
+	</resultMap>
+	
+	<!-- SelectUser -->
+	<select id="SelectUser" parameterType="java.lang.String" resultMap="SelectUser">
+		select person_id,username,ident from login_readperson where person_id=#{person_id}
+	</select>
+	
+	<!-- InsertPerson_user -->
+	<insert id="InsertPerson_user" parameterType="nyist.net.Library.entity.person_user">
+		insert into person_user values(#{person_id},#{username},#{ident},#{book_id},#{book_name},#{book_type},#{book_price},#{book_count},#{book_add})
+	</insert>
+	
+	<!-- selectPerson_userByPer_bk -->
+	<select id="selectPerson_userByPer_bk" resultType="nyist.net.Library.entity.person_user">
+		select * from person_user where person_id=#{person_id} and book_id=#{book_id} 
+	</select>	
+	
+	<!-- updatePerson_user -->
+	<update id="updatePerson_user" parameterType="nyist.net.Library.entity.person_user">
+		update person_user set book_count=book_count+1 where book_id=#{book_id} and person_id=#{person_id}
+	</update>
+	
+	<!-- SelectAllPerson_UserInformations -->
+	<select id="SelectAllPerson_UserInformations" resultType="nyist.net.Library.entity.person_user">
+		select * from person_user
+	</select>
+	
+	<!-- selectPerson_userByPer_bk1 -->
+	<select id="selectPerson_userByPer_bk1" resultType="nyist.net.Library.entity.person_user">
+		select * from person_user where person_id=#{person_id} and book_id=#{book_id} 
+	</select>
+	
+	<!-- DeletePerson_User -->
+	<delete id="DeletePerson_User">
+		delete from person_user where person_id=#{person_id} and book_id=#{book_id}
+	</delete>
+	
+	
+	<resultMap type="nyist.net.Library.entity.login_readperson" id="SelectUserByIdent">
+		<id column="person_id" property="person_id"/>
+		<result column="username" property="username"/>
+		<result column="ident" property="ident"/>
+	</resultMap>
+	
+	<!-- SelectUserByIdent -->
+	<select id="SelectUserByIdent" resultMap="SelectUserByIdent">
+		select person_id,username,ident from login_readperson where ident='u'
+	</select>
+	
+	<resultMap type="nyist.net.Library.entity.login_readperson" id="SelectUserById">
+		<id column="person_id" property="person_id"/>
+		<result column="username" property="username"/>
+		<result column="ident" property="ident"/>
+	</resultMap>
+	
+	<!-- SelectUserById -->
+	<select id="SelectUserById" resultMap="SelectUserById">
+		select person_id,username,ident from login_readperson where ident='u' and person_id=#{person_id}
+	</select>
+	
+	<!-- AlterPerson_User -->
+	<update id="AlterPerson_User" parameterType="nyist.net.Library.entity.login_readperson">
+		update login_readperson set username=#{username},pw=#{pw},ident=#{ident} where person_id=#{person_id}
+	</update>
+	
+	<!-- SelectPerson_User -->
+	<select id="SelectPerson_User" parameterType="java.lang.String" resultType="nyist.net.Library.entity.login_readperson">
+		select * from login_readperson where person_id=#{person_id}
+	</select>
+	
+	<!-- DeleteFromLogin_ReadPerson -->
+	<delete id="DeleteFromLogin_ReadPerson" parameterType="java.lang.String">
+		delete from bookperson where person_id=#{person_id}
+	</delete>
+	
+	<!-- DeleteFromBookPerson -->
+	<delete id="DeleteFromBookPerson" parameterType="java.lang.String">
+		delete from login_readperson where person_id=#{person_id}
+	</delete>
+</mapper>
